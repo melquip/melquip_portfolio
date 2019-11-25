@@ -1,5 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { ThemeProvider } from 'styled-components'
+import GlobalStyles from './globalStyles.js';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const theme = {
+  colors: {
+
+  },
+  fonts: {
+
+  },
+  tinyBreakpoint: '360px',
+  mobileBreakpoint: '480px',
+  tabletBreakpoint: '640px',
+  desktopBreakpoint: '1024px',
+  largerBreakpoint: '1366px',
+}
+
+ReactDOM.render(
+  <ThemeProvider theme={theme}>
+    <GlobalStyles />
+    <App />
+  </ThemeProvider>, 
+  document.getElementById('root')
+);
