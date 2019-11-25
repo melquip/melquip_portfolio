@@ -14,7 +14,7 @@ const theme = {
   colors: {
     black: '#000',
     white: '#fff',
-
+    lightgray: '#eee',
   },
   fonts: {
     primary: '"Roboto Mono", monotype, sans-serif',

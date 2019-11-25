@@ -13,7 +13,7 @@ const settings = {
 
 const StyledSlick = styled(Slick)`
   margin-left: -.3rem;
-`
+`;
 const Slide = styled.div`
   padding: 20px 0;
   p {
@@ -39,12 +39,14 @@ const About = (props) => {
           <Slide className="slide">
             <p>Hi, I'm a </p>
             <p>22 years old</p>
+            <p>portuguese</p>
             <p>full-stack developer</p>
             <p>& gamer</p>
           </Slide>
           <Slide className="slide">
             <p>Hi, I'm a </p>
             <p>22 years old</p>
+            <p>portuguese</p>
             <p>full-stack developer</p>
             <p>& gamer</p>
           </Slide>
