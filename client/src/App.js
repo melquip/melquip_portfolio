@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './img/logoBlack.png';
 import styled from 'styled-components';
+import About from './About';
 
 const Header = styled.div`
   height: 100px;
@@ -27,7 +28,7 @@ const Header = styled.div`
   }
 `;
 
-function App() {
+const App = (props) => {
   return (
     <div className="App">
       <Header>
@@ -42,6 +43,7 @@ function App() {
           </div>
         </div>
       </Header>
+      <About />
     </div>
   );
 }
