@@ -66,6 +66,17 @@ button {
   appearance: none;
   background-color: transparent;
 }
+section {
+  padding: 4rem 0;
+}
+
+h1 {
+  margin-left: -5px;  
+  font-size: 5rem;
+  font-family: ${props => props.theme.fonts.secondary};
+  margin-bottom: 3rem;
+}
+
 
 .inner {
   display: block;

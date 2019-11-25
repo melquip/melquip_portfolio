@@ -12,7 +12,7 @@ const theme = {
     'https://fonts.googleapis.com/css?family=Odibee+Sans|Roboto+Mono&display=swap',
   ],
   colors: {
-    black: '#000',
+    black: '#111',
     white: '#fff',
     lightgray: '#eee',
   },
