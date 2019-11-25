@@ -18,6 +18,7 @@ const Slide = styled.div`
     font-size: 7.5rem;
     line-height: 8.25rem;
     font-family: ${props => props.theme.fonts.secondary};
+    color: ${props => props.theme.colors.purple};
     transition: transform .33s ease-in-out;
     &:hover {
       transform: translateX(0) scale(.98);

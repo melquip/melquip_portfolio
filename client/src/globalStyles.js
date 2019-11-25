@@ -76,7 +76,7 @@ h1 {
   font-size: 5rem;
   font-family: ${props => props.theme.fonts.secondary};
   margin-bottom: 3rem;
-  color: ${props => props.theme.colors.red}
+  color: ${props => props.theme.colors.purple}
 }
 
 
