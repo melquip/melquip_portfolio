@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './img/logoBlack.png';
 import styled from 'styled-components';
 import About from './About';
+import Questions from './Questions';
 
 const Header = styled.div`
   height: 100px;
@@ -44,6 +45,7 @@ const App = (props) => {
         </div>
       </Header>
       <About />
+      <Questions />
     </div>
   );
 }
