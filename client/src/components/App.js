@@ -3,6 +3,7 @@ import logo from '../img/logoBlack.png';
 import styled from 'styled-components';
 import About from './About';
 import Questions from './Questions';
+import Work from './Work';
 
 const Header = styled.div`
   height: 100px;
@@ -46,6 +47,7 @@ const App = (props) => {
       </Header>
       <About />
       <Questions />
+      <Work />
     </div>
   );
 }
