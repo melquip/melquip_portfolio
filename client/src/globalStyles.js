@@ -1,6 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
-
 export default createGlobalStyle`
+@font-face {
+  font-family: "Roboto Mono", sans-serif;
+  font-weight: 400;
+  src: url('./fonts/robotomono-regular.woff2') format('woff2'), 
+    url('./fonts/robotomono-regular.woff') format('woff'),
+    url('./fonts/robotomono-regular.ttf') format('truetype'),
+}
+@font-face {
+  font-family: "Odibee Sans", sans-serif;
+  src: url('./fonts/odibeesans-regular.woff2') format('woff2'), 
+    url('./fonts/odibeesans-regular.woff') format('woff'),
+    url('./fonts/odibeesans-regular.ttf') format('truetype'),
+}
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -32,6 +44,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+  font-family: ${props => props.theme.fonts.primary};
 }
 ol, ul {
 	list-style: none;
@@ -51,12 +64,21 @@ table {
 *, *:before, *:after {
   box-sizing: border-box;
 }
+img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 .inner {
   display: block;
   width: 100%;
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1024px;
 }
 
 .flex {

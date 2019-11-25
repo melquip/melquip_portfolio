@@ -6,10 +6,13 @@ import GlobalStyles from './globalStyles.js';
 
 const theme = {
   colors: {
+    black: '#000',
+    white: '#fff',
 
   },
   fonts: {
-
+    primary: '"Roboto Mono", monotype, sans-serif',
+    secondary: '"Odibee Sans", "Roboto Mono", cursive, sans-serif'
   },
   tinyBreakpoint: '360px',
   mobileBreakpoint: '480px',
