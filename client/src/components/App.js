@@ -5,6 +5,8 @@ import About from './About';
 import Questions from './Questions';
 import Work from './Work';
 
+import { Route, Link } from 'react-router-dom';
+
 const Header = styled.div`
   height: 100px;
   padding: 25px 0;
@@ -35,19 +37,19 @@ const App = (props) => {
     <div className="App">
       <Header>
         <div className="inner flex">
-          <a href="/" className="col col-2 logo">
+          <Link to="/" className="col col-2 logo">
             <img src={logo} alt="Melquip's logo" />
-          </a>
+          </Link>
           <div className="col col-2 menu flex">
-            <a href="/">About</a>
-            <a href="/work">Portfolio</a>
-            <a href="/faq">FAQ</a>
+            <Link to="/">About</Link>
+            <Link to="/work">Portfolio</Link>
+            <Link to="/faq">FAQ</Link>
           </div>
         </div>
       </Header>
-      <About />
-      <Questions />
-      <Work />
+      <Route exact path="/" component={About} />
+      <Route path="/work" component={Work} />
+      <Route path="/faq" component={Questions} />
     </div>
   );
 }
