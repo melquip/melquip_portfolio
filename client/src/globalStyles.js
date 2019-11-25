@@ -1,18 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
-@font-face {
-  font-family: "Roboto Mono", sans-serif;
-  font-weight: 400;
-  src: url('./fonts/robotomono-regular.woff2') format('woff2'), 
-    url('./fonts/robotomono-regular.woff') format('woff'),
-    url('./fonts/robotomono-regular.ttf') format('truetype'),
-}
-@font-face {
-  font-family: "Odibee Sans", sans-serif;
-  src: url('./fonts/odibeesans-regular.woff2') format('woff2'), 
-    url('./fonts/odibeesans-regular.woff') format('woff'),
-    url('./fonts/odibeesans-regular.ttf') format('truetype'),
-}
+${props => props.theme.preload.map(url => '@import url("' + url + '");')}
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)

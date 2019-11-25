@@ -5,6 +5,9 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyles from './globalStyles.js';
 
 const theme = {
+  preload: [
+    'https://fonts.googleapis.com/css?family=Odibee+Sans|Roboto+Mono&display=swap',
+  ],
   colors: {
     black: '#000',
     white: '#fff',
