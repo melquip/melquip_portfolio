@@ -61,6 +61,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+button {
+  border: 0;
+  appearance: none;
+  background-color: transparent;
+}
 
 .inner {
   display: block;
