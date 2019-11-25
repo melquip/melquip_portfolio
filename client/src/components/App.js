@@ -1,11 +1,14 @@
 import React from 'react';
-import logo from '../img/logoBlack.png';
 import styled from 'styled-components';
+import { Route, Link } from 'react-router-dom';
+
+import logo from '../img/logoBlack.png';
+
 import About from './About';
 import Questions from './Questions';
 import Work from './Work';
+import WorkDetails from './WorkDetails';
 
-import { Route, Link } from 'react-router-dom';
 
 const Header = styled.div`
   height: 100px;
@@ -49,6 +52,7 @@ const App = (props) => {
       </Header>
       <Route exact path="/" component={About} />
       <Route path="/work" component={Work} />
+      <Route path="/work/:id" component={WorkDetails} />
       <Route path="/faq" component={Questions} />
     </div>
   );
