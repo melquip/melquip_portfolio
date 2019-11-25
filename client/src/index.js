@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './globalStyles.js';
+
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -12,9 +14,15 @@ const theme = {
     'https://fonts.googleapis.com/css?family=Odibee+Sans|Roboto+Mono&display=swap',
   ],
   colors: {
-    black: '#111',
+    black: 'rgba(17, 17, 17, 1)',
     white: '#fff',
     lightgray: '#eee',
+    orange: 'rgba(239, 148, 108, 1)',
+    lightorange: 'rgba(239, 148, 108, .5)',
+    purple: 'rgba(75, 78, 109, 1)',
+    blue: 'rgba(38, 84, 124, 1)',
+    lightblue: 'rgba(38, 84, 124, .25)',
+    red: 'rgba(239, 71, 111, 1)',
   },
   fonts: {
     primary: '"Roboto Mono", monotype, sans-serif',
@@ -28,9 +36,11 @@ const theme = {
 }
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <GlobalStyles />
-    <App />
-  </ThemeProvider>, 
+  <Router>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <App />
+    </ThemeProvider>
+  </Router>,
   document.getElementById('root')
 );
