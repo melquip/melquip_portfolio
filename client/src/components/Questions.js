@@ -25,21 +25,21 @@ const Faq = styled.div`
       }
     }
     &:hover {
-      background-color: ${props => props.theme.colors.lightgray};
+      background-color: ${props => props.theme.colors.lightorange};
     }
   }
   .answer {
     overflow: hidden;
     max-height: 0;
     transition: max-height .33s cubic-bezier(0, 1, 0, 1) -.04125s, padding .5s ease-in-out;
-    background-color: ${props => props.theme.colors.lightgray};
+    background-color: ${props => props.theme.colors.lightorange};
     p {
       line-height: 1.3;
     }
   }
   &.open {
     .question {
-      background-color: ${props => props.theme.colors.lightgray};
+      background-color: ${props => props.theme.colors.orange};
       button span {
         transform: rotate(45deg);
       }
@@ -61,7 +61,7 @@ const Questions = (props) => {
         id: 1,
         question: "What is the question?",
         answer: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        open: false,
+        open: true,
       },
       {
         id: 2,

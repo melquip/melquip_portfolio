@@ -51,6 +51,7 @@ table {
 }
 *, *:before, *:after {
   box-sizing: border-box;
+  outline: 0;
 }
 img {
   display: block;
@@ -75,6 +76,7 @@ h1 {
   font-size: 5rem;
   font-family: ${props => props.theme.fonts.secondary};
   margin-bottom: 3rem;
+  color: ${props => props.theme.colors.red}
 }
 
 
