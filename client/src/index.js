@@ -4,6 +4,9 @@ import App from './App';
 import { ThemeProvider } from 'styled-components'
 import GlobalStyles from './globalStyles.js';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 const theme = {
   preload: [
     'https://fonts.googleapis.com/css?family=Odibee+Sans|Roboto+Mono&display=swap',
