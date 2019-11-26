@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import SVGTitle from './SVGTitle';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 const Project = styled(Link)`
   position: relative;
@@ -55,40 +57,33 @@ const StyledDetails = styled.section`
 `;
 
 const WorkDetails = (props) => {
-  const { type } = props; // , project
-  const [project, setProject] = useState({});
+  const { project, type, projects, match, getProjects } = props; // , project
   useEffect(() => {
-    setProject({
-      id: 1,
-      title: "Title of a portfolio project",
-      summary: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-      description: ["Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil ratione, cupiditate quidem accusantium corrupti voluptate maxime mollitia. Corrupti, exercitationem ex? Accusamus deleniti rerum vel cum optio asperiores explicabo rem laudantium!", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, ipsa saepe quasi nobis exercitationem iste commodi, tempora ea expedita et odit illo quis tenetur porro sequi necessitatibus suscipit odio quibusdam!", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga iste voluptates facilis sint possimus, tempora impedit vel voluptas soluta praesentium velit voluptatibus? Nemo ex numquam praesentium exercitationem cumque voluptas laboriosam?"],
-      urlLive: "https://www.google.com/",
-      urlRepo: "https://github.com/melquip/melquip_portfolio",
-      open: false,
-    });
+    if(type !== 'list') {
+      getProjects();
+    }
   }, []);
-
+  const id = match ? Number(match.params.id) : null;
+  const singleProject = project ? project : projects.find(proj => proj.id === id);
   return (
     type === 'list' ? (
-      <Project key={project.id} to={'/work/' + project.id} className="col col-2">
-        <h3>{project.title}</h3>
-        <p>{project.summary}</p>
+      <Project key={singleProject.id} to={'/work/' + singleProject.id} className="col col-2">
+        <h3>{singleProject.title}</h3>
+        <p>{singleProject.summary}</p>
         <div className="button"><i className="icon-eye"></i> View</div>
       </Project>
     ) : (
         <StyledDetails className="portfolio_detail">
           <div className="inner">
-            <SVGTitle>{project.title}</SVGTitle>
-            <h6>{project.summary}</h6>
-            {project.description && project.description.length ? project.description.map((p, i) => <p key={i}>{p}</p>) : null}
-            <a href={project.urlRepo} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-code"></i> View code</a>
-            <a href={project.urlLive} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-live"></i> View live</a>
+            <SVGTitle>{singleProject.title}</SVGTitle>
+            <h6>{singleProject.summary}</h6>
+            {singleProject.description && singleProject.description.length ? singleProject.description.map((p, i) => <p key={i}>{p}</p>) : null}
+            <a href={singleProject.urlRepo} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-code"></i> View code</a>
+            <a href={singleProject.urlLive} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-live"></i> View live</a>
           </div>
-          
         </StyledDetails>
       )
   );
 }
 
-export default WorkDetails
+export default connect(state => state, actionCreators)(WorkDetails);

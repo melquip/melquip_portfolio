@@ -5,6 +5,7 @@ import * as reducers from './reducers';
 const store = createStore(
 	// reducers
 	combineReducers({
+    about: reducers.aboutReducer,
     projects: reducers.projectsReducer,
     questions: reducers.questionsReducer,
 	}),

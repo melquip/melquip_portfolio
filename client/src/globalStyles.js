@@ -150,7 +150,8 @@ svg#pageTitle {
   height: 100%;
 }
 
-.slick-dots li button:before {
+.slick-dots li button:before, .slick-dots li.slick-active button:before {
   font-size: .65rem;
+  color: ${props => props.theme.colors.blue};
 }
 `;

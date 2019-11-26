@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import WorkDetails from './WorkDetails';
 import SVGTitle from './SVGTitle';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 const ProjectFlex = styled.div`
   display: flex;
@@ -23,59 +25,10 @@ const ProjectFlex = styled.div`
 `;
 
 const Work = (props) => {
-  const [projects, setProjects] = useState([]);
+  const { projects, getProjects } = props;
 
   useEffect(() => {
-    setProjects([
-      {
-        id: 1,
-        title: "Title of a portfolio project",
-        description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        urlLive: "https://www.google.com/",
-        urlRepo: "https://github.com/melquip/melquip_portfolio",
-        open: false,
-      },
-      {
-        id: 2,
-        title: "Title of a portfolio project",
-        description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        urlLive: "https://www.google.com/",
-        urlRepo: "https://github.com/melquip/melquip_portfolio",
-        open: false,
-      },
-      {
-        id: 3,
-        title: "Title of a portfolio project",
-        description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        urlLive: "https://www.google.com/",
-        urlRepo: "https://github.com/melquip/melquip_portfolio",
-        open: false,
-      },
-      {
-        id: 4,
-        title: "Title of a portfolio project",
-        description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        urlLive: "https://www.google.com/",
-        urlRepo: "https://github.com/melquip/melquip_portfolio",
-        open: false,
-      },
-      {
-        id: 5,
-        title: "Title of a portfolio project",
-        description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        urlLive: "https://www.google.com/",
-        urlRepo: "https://github.com/melquip/melquip_portfolio",
-        open: false,
-      },
-      {
-        id: 6,
-        title: "Title of a portfolio project",
-        description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        urlLive: "https://www.google.com/",
-        urlRepo: "https://github.com/melquip/melquip_portfolio",
-        open: false,
-      }
-    ])
+    getProjects();
   }, []);
 
   return (
@@ -90,4 +43,4 @@ const Work = (props) => {
   )
 }
 
-export default Work
+export default connect(state => state, actionCreators)(Work);

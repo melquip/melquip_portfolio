@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import SVGTitle from './SVGTitle';
 import { connect } from 'react-redux';
@@ -58,9 +58,11 @@ const Faq = styled.div`
 `;
 
 const Questions = (props) => {
-  const { questions, toggleFAQ } = props;
+  const { questions, toggleFAQ, getQuestions } = props;
   const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), []);
-
+  useEffect(() => {
+    getQuestions();
+  }, [])
   return (
     <section className="questions">
       <div className="inner">

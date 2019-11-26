@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Slick from 'react-slick';
 import styled from 'styled-components';
 import Tilt from 'react-tilt';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 const StyledAbout = styled.section`
   overflow: hidden;
@@ -62,41 +64,21 @@ const settingsTilt = {
 }
 
 const About = (props) => {
+  const { about, getAbout } = props;
   const [grabbed, setGrabbed] = useState(false);
-  const [aboutSlides, setAboutSlides] = useState([]);
 
   useEffect(() => {
-    setAboutSlides([
-      [
-        "Hi, I'm Melqui,",
-        "22 years old,",
-        "portuguese,",
-        "full-stack developer",
-        "& gamer",
-      ],
-      [
-        "Hi, I'm Melqui,",
-        "22 years old,",
-        "portuguese,",
-        "full-stack developer",
-        "& gamer",
-      ],
-      [
-        "Hi, I'm Melqui,",
-        "22 years old,",
-        "portuguese,",
-        "full-stack developer",
-        "& gamer",
-      ]
-    ]);
+    getAbout();
   }, []);
 
-  
-
   return (
-    <StyledAbout className={'about' + (grabbed ? ' grabbed' : '')} onMouseDown={() => setGrabbed(true)} onMouseUp={() => setGrabbed(false)}>
+    <StyledAbout
+      className={'about' + (grabbed ? ' grabbed' : '')}
+      onMouseDown={() => setGrabbed(true)}
+      onMouseUp={() => setGrabbed(false)}
+    >
       <StyledSlick {...settingsSlider}>
-        {aboutSlides.length ? aboutSlides.map((slide, i) => (
+        {about.length ? about.map((slide, i) => (
           <Slide key={i}>
             <Tilt options={settingsTilt}>
               <div className="inner">
@@ -110,4 +92,4 @@ const About = (props) => {
   )
 }
 
-export default About;
+export default connect(state => state, actionCreators)(About);
