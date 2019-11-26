@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import SVGTitle from './SVGTitle';
 
 const Faq = styled.div`
   margin-top: 1rem;
@@ -21,26 +22,28 @@ const Faq = styled.div`
       line-height: inherit;
       span {
         display: block;
-        transition: transform .5s ease-in-out;
+        transition: transform .4s ease-in-out, color .33s ease-in-out;
       }
     }
     &:hover {
-      background-color: ${props => props.theme.colors.lightorange};
+      background-color: ${props => props.theme.colors.lightblue};
     }
   }
   .answer {
     overflow: hidden;
     max-height: 0;
     transition: max-height .33s cubic-bezier(0, 1, 0, 1) -.04125s, padding .5s ease-in-out;
-    background-color: ${props => props.theme.colors.lightorange};
+    background-color: ${props => props.theme.colors.lightblue};
     p {
       line-height: 1.3;
     }
   }
   &.open {
     .question {
-      background-color: ${props => props.theme.colors.orange};
+      color: ${props => props.theme.colors.white};
+      background-color: ${props => props.theme.colors.midblue};
       button span {
+        color: ${props => props.theme.colors.white};
         transform: rotate(45deg);
       }
     }
@@ -75,14 +78,14 @@ const Questions = (props) => {
   const toggleFAQ = (id) => (e) => {
     setQuestions(questions.map(question => {
       if(question.id === id) return { ...question, open: !question.open };
-      return { ...question, open: false };
+      return question;
     }));
   }
 
   return (
     <section className="questions">
       <div className="inner">
-        <h1>Frequently asked questions</h1>
+        <SVGTitle>Frequently asked questions</SVGTitle>
         {questions.length ? questions.map(question => (
           <Faq key={question.id} onClick={toggleFAQ(question.id)} className={question.open ? "open" : ""}>
             <div className="question">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import WorkDetails from './WorkDetails';
+import SVGTitle from './SVGTitle';
 
 const Grid = styled.div`
   display: grid;
@@ -36,9 +37,9 @@ const Work = (props) => {
   return (
     <section className="portfolio">
       <div className="inner">
-        <h1>Projects</h1>
+        <SVGTitle>Projects</SVGTitle>
         <Grid>
-          {projects.length ? projects.map(project => <WorkDetails type="list" project={project} />) : null}
+          {projects.length ? projects.map(project => <WorkDetails key={project.id} type="list" project={project} />) : null}
         </Grid>
       </div>
     </section>
