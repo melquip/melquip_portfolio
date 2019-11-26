@@ -72,11 +72,12 @@ section {
 }
 
 h1 {
-  margin-left: -5px;  
+  margin-left: -0.05em;
   font-size: 5rem;
   font-family: ${props => props.theme.fonts.secondary};
   margin-bottom: 3rem;
-  color: ${props => props.theme.colors.purple}
+  color: ${props => props.theme.colors.purple};
+  background: ${props => props.theme.colors.white};
 }
 
 
@@ -115,4 +116,14 @@ h1 {
     flex-basis: calc(100% / 5);
   }
 }
+
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .7rem 1rem;
+  background-color: ${props => props.theme.colors.lightgray};
+  color: ${props => props.theme.colors.purple};
+  transition: all .2s ease-in-out;
+}
+
 `;
