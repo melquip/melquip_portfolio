@@ -5,10 +5,16 @@ import Tilt from 'react-tilt';
 
 const StyledAbout = styled.section`
   overflow: hidden;
+  cursor: move;
+  cursor: grab;
+  &.grabbed {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
 `;
 
 const StyledSlick = styled(Slick)`
-  cursor: move;
   margin-left: -.3rem;
 `;
 
@@ -56,6 +62,7 @@ const settingsTilt = {
 }
 
 const About = (props) => {
+  const [grabbed, setGrabbed] = useState(false);
   const [aboutSlides, setAboutSlides] = useState([]);
 
   useEffect(() => {
@@ -84,8 +91,10 @@ const About = (props) => {
     ]);
   }, []);
 
+  
+
   return (
-    <StyledAbout className="about">
+    <StyledAbout className={'about' + (grabbed ? ' grabbed' : '')} onMouseDown={() => setGrabbed(true)} onMouseUp={() => setGrabbed(false)}>
       <StyledSlick {...settingsSlider}>
         {aboutSlides.length ? aboutSlides.map((slide, i) => (
           <Slide key={i}>
