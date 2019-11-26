@@ -51,7 +51,7 @@ const App = (props) => {
         </div>
       </Header>
       <Route exact path="/" component={About} />
-      <Route path="/work" component={Work} />
+      <Route exact path="/work" component={Work} />
       <Route path="/work/:id" component={WorkDetails} />
       <Route path="/faq" component={Questions} />
     </div>
