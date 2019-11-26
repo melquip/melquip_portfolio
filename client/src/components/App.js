@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Route, Link } from 'react-router-dom';
 
-import logo from '../img/logoBlack.png';
+import logo from '../img/logoBlackAnimated.svg';
 
 import About from './About';
 import Questions from './Questions';
@@ -18,6 +18,7 @@ const Header = styled.div`
     max-height: 50px;
     img {
       max-height: 100%;
+      height: 100%;
     }
   }
   .menu {
