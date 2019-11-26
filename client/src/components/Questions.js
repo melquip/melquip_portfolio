@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import SVGTitle from './SVGTitle';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 const Faq = styled.div`
   margin-top: 1rem;
@@ -56,57 +58,27 @@ const Faq = styled.div`
 `;
 
 const Questions = (props) => {
-  const [questions, setQuestions] = useState([]);
-
-  useEffect(() => {
-    setQuestions([
-      {
-        id: 1,
-        question: "What is the question?",
-        answer: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        open: true,
-      },
-      {
-        id: 2,
-        question: "What is the question?",
-        answer: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
-        open: false,
-      }
-    ])
-  }, []);
-
-  const toggleFAQ = (id) => (e) => {
-    setQuestions(questions.map(question => {
-      if(question.id === id) return { ...question, open: !question.open };
-      return question;
-    }));
-  }
+  const { questions, toggleFAQ } = props;
+  const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), []);
 
   return (
     <section className="questions">
       <div className="inner">
         <SVGTitle>Frequently asked questions</SVGTitle>
         {questions.length ? questions.map(question => (
-          <Faq key={question.id} onClick={toggleFAQ(question.id)} className={question.open ? "open" : ""}>
+          <Faq key={question.id} onClick={toggleQuestionOnClick(question.id)} className={question.open ? "open" : ""}>
             <div className="question">
-              <p>What is the question?</p>
+              <p>{question.question}</p>
               <button><span>+</span></button>
             </div>
             <div className="answer">
-              <p>
-                This is an answhe question
-                this is an ao the question
-                this is er to the question
-                Tan answer to the question
-                s an answer to the question
-                is is an answer to the question
-            </p>
+              <p>{question.answer}</p>
             </div>
           </Faq>
         )) : null}
       </div>
     </section>
   )
-}
+  }
 
-export default Questions
+  export default connect(state => state, actionCreators)(Questions);

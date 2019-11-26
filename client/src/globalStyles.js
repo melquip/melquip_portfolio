@@ -149,4 +149,8 @@ svg#pageTitle {
   left: 0;
   height: 100%;
 }
+
+.slick-dots li button:before {
+  font-size: .65rem;
+}
 `;
