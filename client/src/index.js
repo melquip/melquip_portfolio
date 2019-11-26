@@ -30,11 +30,11 @@ const theme = {
     primary: '"Roboto Mono", monotype, sans-serif',
     secondary: '"Odibee Sans", "Roboto Mono", cursive, sans-serif'
   },
-  tinyBreakpoint: '360px',
-  mobileBreakpoint: '480px',
-  tabletBreakpoint: '640px',
-  desktopBreakpoint: '1024px',
-  largerBreakpoint: '1366px',
+  mediaTiny: 'screen and (min-width: 360px)',
+  mediaMobile: 'screen and (min-width: 480px)',
+  mediaTablet: 'screen and (min-width: 720px)',
+  mediaDesktop: 'screen and (min-width: 1024px)',
+  mediaLarger: 'screen and (min-width: 1280px)',
 }
 
 ReactDOM.render(

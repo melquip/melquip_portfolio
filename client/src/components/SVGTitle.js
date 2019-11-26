@@ -1,9 +1,28 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+
+const StyledTitle = styled.h1`
+  position: relative;
+  overflow: hidden;
+  height: 2rem;
+  @media ${props => props.theme.mediaTiny} {
+    height: 2.75rem;
+  }
+  @media ${props => props.theme.mediaMobile} {
+    height: 3.5rem;
+  }
+  @media ${props => props.theme.mediaTablet} {
+    height: 4rem;
+  }
+  @media ${props => props.theme.mediaDesktop} {
+    height: 5rem;
+  }
+`;
 
 export const SVGTitle = (props) => {
   return (
-    <h1>
-      <svg viewBox="0 0 1024 88">
+    <StyledTitle>
+      <svg id="pageTitle" viewBox="0 0 1024 88" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="gr-simple" x1="0" y1="0" x2="1" y2="1" gradientTransform="rotate(-45)" fx="0">
             <stop stopColor="rgba(38, 84, 124, 1)" offset="0">
@@ -42,7 +61,7 @@ export const SVGTitle = (props) => {
           {props.children}
         </text>
       </svg>
-    </h1>
+    </StyledTitle>
   )
 }
 

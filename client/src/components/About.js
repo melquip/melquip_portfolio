@@ -15,13 +15,17 @@ const StyledSlick = styled(Slick)`
 const Slide = styled.div`
   padding-bottom: 1rem;
   p {
-    font-size: 7.5rem;
-    line-height: 8.25rem;
+    font-size: 10vmin;
+    line-height: 11vmin;
     font-family: ${props => props.theme.fonts.secondary};
     color: ${props => props.theme.colors.purple};
     transition: transform .33s ease-in-out;
     &:hover {
       transform: translateX(0) scale(.98);
+    }
+    @media ${props => props.theme.mediaDesktop} {
+      font-size: 12vmin;
+      line-height: 13vmin;
     }
   }
 `;

@@ -3,10 +3,14 @@ import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
   .col:first-child {
+    font-size: .8rem;
     color: ${props => props.theme.colors.blue};
     line-height: 4.5rem;
     span {
       color: ${props => props.theme.colors.red};
+    }
+    @media ${props => props.theme.mediaMobile} {
+      font-size: 1rem;
     }
   }
   .col:last-child {
@@ -21,10 +25,6 @@ const StyledFooter = styled.footer`
       }
       &:last-child {
         margin-right: -16px;
-      }
-      i:before {
-        width: auto;
-        margin: 0;
       }
     }
   }

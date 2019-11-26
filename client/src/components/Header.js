@@ -6,9 +6,14 @@ import logo from '../img/logoBlackAnimated.svg';
 const StyledHeader = styled.header`
   height: 100px;
   padding: 25px 0;
+  
   .logo {
     width: 100%;
     max-height: 50px;
+    &.col.col-2 {
+      max-width: 100px;
+      flex-basis: 100px;
+    }
     img {
       max-height: 100%;
       height: 100%;
@@ -16,14 +21,26 @@ const StyledHeader = styled.header`
   }
   .menu {
     justify-content: flex-end;
+    &.col.col-2 {
+      max-width: calc(100% - 100px);
+      flex-basis: calc(100% - 100px);
+    }
     a {
-      font-size: 1.5rem;
-      padding: .81rem 1.56rem;
-      //font-variant: small-caps;
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      padding: .81rem 1rem;
       text-transform: uppercase;
       font-family: ${props => props.theme.fonts.secondary};
       &:last-child {
-        margin-right: -1.56rem;
+        margin-right: -1rem;
+      }
+      @media ${props => props.theme.mediaMobile} {
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        padding: .81rem 1.56rem;
+        &:last-child {
+          margin-right: -1.56rem;
+        }
       }
     }
   }

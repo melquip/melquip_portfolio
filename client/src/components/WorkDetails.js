@@ -10,7 +10,7 @@ const Project = styled(Link)`
   border: 2px solid ${props => props.theme.colors.black};
   transition: all .2s ease-in-out;
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     padding-bottom: 1rem;
     font-family: ${props => props.theme.fonts.secondary};
     color: ${props => props.theme.colors.purple};
@@ -71,10 +71,10 @@ const WorkDetails = (props) => {
 
   return (
     type === 'list' ? (
-      <Project key={project.id} to={'/work/' + project.id}>
+      <Project key={project.id} to={'/work/' + project.id} className="col col-2">
         <h3>{project.title}</h3>
         <p>{project.summary}</p>
-        <div className="button">See more</div>
+        <div className="button"><i className="icon-eye"></i> View</div>
       </Project>
     ) : (
         <StyledDetails className="portfolio_detail">
@@ -82,8 +82,8 @@ const WorkDetails = (props) => {
             <SVGTitle>{project.title}</SVGTitle>
             <h6>{project.summary}</h6>
             {project.description && project.description.length ? project.description.map((p, i) => <p key={i}>{p}</p>) : null}
-            <a href={project.urlRepo} className="button" target="_blank" rel="noopener noreferrer">View code</a>
-            <a href={project.urlLive} className="button" target="_blank" rel="noopener noreferrer">View live</a>
+            <a href={project.urlRepo} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-code"></i> View code</a>
+            <a href={project.urlLive} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-live"></i> View live</a>
           </div>
           
         </StyledDetails>

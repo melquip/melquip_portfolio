@@ -85,7 +85,22 @@ h1 {
   display: block;
   width: 100%;
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: 300px;
+  @media ${props => props.theme.mediaTiny} {
+    max-width: 320px;
+  }
+  @media ${props => props.theme.mediaMobile} {
+    max-width: 420px;
+  }
+  @media ${props => props.theme.mediaTablet} {
+    max-width: 620px;
+  }
+  @media ${props => props.theme.mediaDesktop} {
+    max-width: 900px;
+  }
+  @media ${props => props.theme.mediaLarger} {
+    max-width: 1024px;
+  }
 }
 
 .flex {
@@ -93,6 +108,7 @@ h1 {
   flex-flow: row wrap;
   flex-grow: 1;
   flex-shrink: 1;
+  justify-content: space-between; 
   &.nowrap {
     flex-wrap: nowrap;
   }
@@ -126,4 +142,11 @@ h1 {
   transition: all .2s ease-in-out;
 }
 
+
+svg#pageTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
 `;
