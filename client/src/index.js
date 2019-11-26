@@ -6,6 +6,7 @@ import GlobalStyles from './globalStyles.js';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import './font/melquip-embedded.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 

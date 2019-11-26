@@ -2,8 +2,32 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  height: 100px;
-  padding: 25px 0;
+  .col:first-child {
+    color: ${props => props.theme.colors.blue};
+    line-height: 4.5rem;
+    span {
+      color: ${props => props.theme.colors.red};
+    }
+  }
+  .col:last-child {
+    display: flex;
+    justify-content: flex-end;
+    a {
+      font-size: 1.5rem;
+      padding: 1.55rem 1rem;
+      transition: color .2s ease-in-out;
+      &:hover {
+        color: ${props => props.theme.colors.red};
+      }
+      &:last-child {
+        margin-right: -16px;
+      }
+      i:before {
+        width: auto;
+        margin: 0;
+      }
+    }
+  }
 `;
 
 const Footer = (props) => {
@@ -11,7 +35,7 @@ const Footer = (props) => {
     <StyledFooter>
       <div className="inner flex">
         <div className="col col-2">
-        here
+          Developed by <span>melqui</span>
         </div>
         <div className="col col-2">
           <a href="#" target="_blank"><i className="icon-twitter"></i></a>
