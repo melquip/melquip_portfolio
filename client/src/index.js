@@ -21,6 +21,7 @@ const theme = {
     lightorange: 'rgba(239, 148, 108, .5)',
     purple: 'rgba(75, 78, 109, 1)',
     blue: 'rgba(38, 84, 124, 1)',
+    midblue: 'rgba(38, 84, 124, .8)',
     lightblue: 'rgba(38, 84, 124, .25)',
     red: 'rgba(239, 71, 111, 1)',
   },
