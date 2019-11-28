@@ -3,5 +3,6 @@ module.exports = {
   port: process.env.PORT,
   origin: [
     'http://localhost:3000',
+    'https://www.melquip.com'
   ]
 }
