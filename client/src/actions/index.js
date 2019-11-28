@@ -1,6 +1,8 @@
 import * as types from './types';
 import axios from 'axios';
 
+const server = 'http://localhost:4000';
+
 export const toggleFAQ = (id) => {
   return {
     type: types.TOGGLE_FAQ,
@@ -9,16 +11,28 @@ export const toggleFAQ = (id) => {
 }
 
 export const getQuestions = () => dispatch => {
-  // get questions from back-end
-  // axios.get('/questions').then(dispatch)
+  axios.get(`${server}/api/questions`).then(({ data: questions }) => {
+    dispatch({
+      type: types.SET_QUESTIONS,
+      payload: questions,
+    });
+  });
 }
 
 export const getProjects = () => dispatch => {
-  // get questions from back-end
-  // axios.get('/questions').then(dispatch)
+  axios.get(`${server}/api/projects`).then(({ data: projects }) => {
+    dispatch({
+      type: types.SET_PROJECTS,
+      payload: projects,
+    });
+  });
 }
 
 export const getAbout = () => dispatch => {
-  // get questions from back-end
-  // axios.get('/questions').then(dispatch)
+  axios.get(`${server}/api/about`).then(({ data: about }) => {
+    dispatch({
+      type: types.SET_ABOUT,
+      payload: about,
+    });
+  });
 }
