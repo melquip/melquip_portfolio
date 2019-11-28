@@ -1,5 +1,6 @@
 const Projects = require('../models')('projects');
 const Questions = require('../models')('questions');
+const About = require('../models')('about');
 
 // error middleware
 function handleErrors(name, router) {
@@ -81,11 +82,42 @@ function validateQuestionPost(req, res, next) {
   }
 }
 
+async function validateAboutReq(req, res, next) {
+  let { id } = req.params;
+  try {
+    id = Number(id);
+    const aboutLine = await About.getOne({ id });
+    if (aboutLine && aboutLine.id) {
+      req.aboutLine = aboutLine;
+      next();
+    } else {
+      next({ message: "Question not found!", status: 404 });
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+function validateAboutPost(req, res, next) {
+  const { line, priority } = req.body;
+  if (!line || typeof priority !== 'number') {
+    next({ message: "Missing one of the required fields!", status: 401 });
+  } else {
+    if (question.length > 255) {
+      next({ message: "Contents exceeds maximum allowed length", status: 401 });
+    } else {
+      next();
+    }
+  }
+}
+
 module.exports = {
   handleErrors,
   validateId,
   validateProjectReq,
   validateProjectPost,
   validateQuestionReq,
-  validateQuestionPost
+  validateQuestionPost,
+  validateAboutReq,
+  validateAboutPost
 }
