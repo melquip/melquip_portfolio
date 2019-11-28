@@ -17,11 +17,11 @@ server.get("/", (req, res) => {
 
 const aboutRouter = require('../routes/aboutRouter');
 const projectsRouter = require('../routes/projectsRouter');
-const faqRouter = require('../routes/faqRouter');
+const questionsRouter = require('../routes/questionsRouter');
 
 server.use("/api/about", aboutRouter);
 server.use("/api/projects", projectsRouter);
-server.use("/api/faq", faqRouter);
+server.use("/api/questions", questionsRouter);
 
 function logger(req, res, next) {
   console.log(`${req.method} to ${req.url}`);
