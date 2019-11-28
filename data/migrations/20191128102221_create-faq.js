@@ -3,6 +3,7 @@ exports.up = function(knex) {
     questions.increments();
     questions.string('question').notNullable().unique();
     questions.text('answer').notNullable();
+    questions.integer('priority').notNullable();
   });
 };
 

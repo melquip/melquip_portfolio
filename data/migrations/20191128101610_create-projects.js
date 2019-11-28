@@ -6,7 +6,7 @@ exports.up = function(knex) {
     projects.text('description').notNullable();
     projects.string('urlLive').notNullable();
     projects.string('urlRepo').notNullable();
-    projects.string('priority').notNullable();
+    projects.integer('priority').notNullable();
   });
 };
 
