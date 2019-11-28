@@ -3,9 +3,9 @@ const db = require('../data/dbConfig');
 function tableModel(table) {
   const getAll = (filter) => {
     if (!filter) {
-      return db(table);
+      return db(table).orderBy('priority', 'desc');
     } else {
-      return db(table).where(filter);
+      return db(table).where(filter).orderBy('priority', 'desc');
     }
   }
   
