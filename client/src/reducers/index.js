@@ -41,7 +41,6 @@ const initialProjectsState = [
     description: ["Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil ratione, cupiditate quidem accusantium corrupti voluptate maxime mollitia. Corrupti, exercitationem ex? Accusamus deleniti rerum vel cum optio asperiores explicabo rem laudantium!", "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, ipsa saepe quasi nobis exercitationem iste commodi, tempora ea expedita et odit illo quis tenetur porro sequi necessitatibus suscipit odio quibusdam!", "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga iste voluptates facilis sint possimus, tempora impedit vel voluptas soluta praesentium velit voluptatibus? Nemo ex numquam praesentium exercitationem cumque voluptas laboriosam?"],
     urlLive: "https://www.google.com/",
     urlRepo: "https://github.com/melquip/melquip_portfolio",
-    open: false,
   },
   {
     id: 2,
@@ -49,7 +48,6 @@ const initialProjectsState = [
     description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
     urlLive: "https://www.google.com/",
     urlRepo: "https://github.com/melquip/melquip_portfolio",
-    open: false,
   },
   {
     id: 3,
@@ -57,7 +55,6 @@ const initialProjectsState = [
     description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
     urlLive: "https://www.google.com/",
     urlRepo: "https://github.com/melquip/melquip_portfolio",
-    open: false,
   },
   {
     id: 4,
@@ -65,7 +62,6 @@ const initialProjectsState = [
     description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
     urlLive: "https://www.google.com/",
     urlRepo: "https://github.com/melquip/melquip_portfolio",
-    open: false,
   },
   {
     id: 5,
@@ -73,7 +69,6 @@ const initialProjectsState = [
     description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
     urlLive: "https://www.google.com/",
     urlRepo: "https://github.com/melquip/melquip_portfolio",
-    open: false,
   },
   {
     id: 6,
@@ -81,7 +76,6 @@ const initialProjectsState = [
     description: "This is an answhe question this is an ao the question this is er to the question Tan answer to the question s an answer to the question is is an answer to the question",
     urlLive: "https://www.google.com/",
     urlRepo: "https://github.com/melquip/melquip_portfolio",
-    open: false,
   }
 ];
 export function projectsReducer(state = initialProjectsState, action) {
