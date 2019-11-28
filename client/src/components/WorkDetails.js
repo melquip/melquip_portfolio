@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import SVGTitle from './SVGTitle';
+import Loading from './Loading';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
@@ -59,12 +60,17 @@ const StyledDetails = styled.section`
 const WorkDetails = (props) => {
   const { project, type, projects, match, getProjects } = props; // , project
   useEffect(() => {
-    if(type !== 'list') {
+    if (!projects.length) {
       getProjects();
     }
   }, []);
   const id = match ? Number(match.params.id) : null;
-  const singleProject = project ? project : projects.find(proj => proj.id === id);
+  const singleProject = project ? project : projects.find(proj => proj.id === Number(id));
+
+  if (!singleProject) {
+    return <Loading />;
+  }
+
   return (
     type === 'list' ? (
       <Project key={singleProject.id} to={'/work/' + singleProject.id} className="col col-2">

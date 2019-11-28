@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import SVGTitle from './SVGTitle';
+import Loading from './Loading';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
@@ -61,8 +62,13 @@ const Questions = (props) => {
   const { questions, toggleFAQ, getQuestions } = props;
   const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), []);
   useEffect(() => {
-    getQuestions();
+    if (!questions.length) {
+      getQuestions();
+    }
   }, [])
+  if (!questions.length) {
+    return <Loading />;
+  }
   return (
     <section className="questions">
       <div className="inner">
@@ -80,7 +86,7 @@ const Questions = (props) => {
         )) : null}
       </div>
     </section>
-  )
-  }
+  );
+}
 
-  export default connect(state => state, actionCreators)(Questions);
+export default connect(state => state, actionCreators)(Questions);
