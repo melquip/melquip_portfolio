@@ -1,6 +1,6 @@
 const questionsRouter = require('express').Router();
-
 const Questions = require('../models')('questions');
+const config = require('../config');
 const {
   handleErrors,
   validateId,
@@ -14,7 +14,7 @@ questionsRouter.get('/', async (req, res, next) => {
     if (questions.length) {
       res.status(200).json(questions);
     } else {
-      next({ message: "No questions were found!", status: 404 });
+      next(config.errors.questionNotFound);
     }
   } catch (error) {
     next(error);
@@ -32,7 +32,7 @@ questionsRouter.post('/', validateQuestionPost, async (req, res, next) => {
     if (newQuestion && newQuestion.id) {
       res.status(200).json(newQuestion);
     } else {
-      next({ message: "Couldn't add question to database!" });
+      next(config.errors.couldntAddQuestion);
     }
   } catch (error) {
     next(error);
@@ -47,7 +47,7 @@ questionsRouter.put('/:id', validateId, validateQuestionPost, async (req, res, n
     if (updatedQuestion && updatedQuestion.id) {
       res.status(200).json(updatedQuestion);
     } else {
-      next({ message: "Couldn't update question info!" });
+      next(config.errors.couldntUpdateQuestion);
     }
   } catch (error) {
     next(error);
@@ -61,7 +61,7 @@ questionsRouter.delete('/:id', validateId, async (req, res, next) => {
     if (deleted) {
       res.status(200).json({ message: "Successfully deleted question " + id + "!" });
     } else {
-      next({ message: "Couldn't delete question!" });
+      next(config.errors.couldntDeleteQuestion);
     }
   } catch (error) {
     next(error);

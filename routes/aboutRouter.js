@@ -1,6 +1,6 @@
 const aboutRouter = require('express').Router();
-
 const About = require('../models')('about');
+const config = require('../config');
 const {
   handleErrors,
   validateId,
@@ -14,10 +14,10 @@ aboutRouter.get('/', async (req, res, next) => {
     if (slides.length) {
       res.status(200).json(slides);
     } else {
-      next({ message: "No slides were found!", status: 404 });
+      next(config.errors.aboutNotFound);
     }
   } catch (error) {
-    next({ message: "Couldn't get about slides" });
+    next(config.errors.couldntGetAllSlides);
   }
 });
 
@@ -32,7 +32,7 @@ aboutRouter.post('/', validateAboutPost, async (req, res, next) => {
     if (newAboutLine && newAboutLine.id) {
       res.status(200).json(newAboutLine);
     } else {
-      next({ message: "Couldn't add about line to database!" });
+      next(config.errors.couldntAddAboutLine);
     }
   } catch (error) {
     next(error);
@@ -47,7 +47,7 @@ aboutRouter.put('/:id', validateId, validateAboutPost, async (req, res, next) =>
     if (updatedAboutLine && updatedAboutLine.id) {
       res.status(200).json(updatedAboutLine);
     } else {
-      next({ message: "Couldn't update about line info!" });
+      next(config.errors.couldntUpdateAboutLine);
     }
   } catch (error) {
     next(error);
@@ -61,7 +61,7 @@ aboutRouter.delete('/:id', validateId, async (req, res, next) => {
     if (deleted) {
       res.status(200).json({ message: "Successfully deleted about line " + id + "!" });
     } else {
-      next({ message: "Couldn't delete about line!" });
+      next(config.errors.couldntDeleteAboutLine);
     }
   } catch (error) {
     next(error);

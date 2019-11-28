@@ -1,6 +1,7 @@
 const Projects = require('../models')('projects');
 const Questions = require('../models')('questions');
 const About = require('../models')('about');
+const config = require('../config');
 
 // error middleware
 function handleErrors(name, router) {
@@ -20,7 +21,7 @@ function validateId(req, res, next) {
   if (id && Number.isInteger(Number(id))) {
     next();
   } else {
-    next({ message: "Invalid project id!", status: 401 });
+    next(config.errors.invalidId);
   }
 }
 
@@ -33,7 +34,7 @@ async function validateProjectReq(req, res, next) {
       req.project = project;
       next();
     } else {
-      next({ message: "Project not found!", status: 404 });
+      next(config.errors.projectNotFound);
     }
   } catch (error) {
     next(error);
@@ -43,10 +44,10 @@ async function validateProjectReq(req, res, next) {
 function validateProjectPost(req, res, next) {
   const { title, summary, description, urlLive, urlRepo, priority } = req.body;
   if (!title || !summary || !description || !urlLive || !urlRepo || typeof priority !== 'number') {
-    next({ message: "Missing one of the required fields!", status: 401 });
+    next(config.errors.missingFields);
   } else {
     if (title.length > 100 || summary.length > 255 || urlLive.length > 255 || urlRepo.length > 255) {
-      next({ message: "Contents exceeds maximum allowed length", status: 401 });
+      next(config.errors.exceededMaxLength);
     } else {
       next();
     }
@@ -62,7 +63,7 @@ async function validateQuestionReq(req, res, next) {
       req.question = question;
       next();
     } else {
-      next({ message: "Question not found!", status: 404 });
+      next(config.errors.questionNotFound);
     }
   } catch (error) {
     next(error);
@@ -72,10 +73,10 @@ async function validateQuestionReq(req, res, next) {
 function validateQuestionPost(req, res, next) {
   const { question, answer, priority } = req.body;
   if (!question || !answer || typeof priority !== 'number') {
-    next({ message: "Missing one of the required fields!", status: 401 });
+    next(config.errors.missingFields);
   } else {
     if (question.length > 255) {
-      next({ message: "Contents exceeds maximum allowed length", status: 401 });
+      next(config.errors.exceededMaxLength);
     } else {
       next();
     }
@@ -91,7 +92,7 @@ async function validateAboutReq(req, res, next) {
       req.aboutLine = aboutLine;
       next();
     } else {
-      next({ message: "Question not found!", status: 404 });
+      next(config.errors.aboutNotFound);
     }
   } catch (error) {
     next(error);
@@ -101,10 +102,10 @@ async function validateAboutReq(req, res, next) {
 function validateAboutPost(req, res, next) {
   const { line, priority } = req.body;
   if (!line || typeof priority !== 'number') {
-    next({ message: "Missing one of the required fields!", status: 401 });
+    next(config.errors.missingFields);
   } else {
     if (question.length > 255) {
-      next({ message: "Contents exceeds maximum allowed length", status: 401 });
+      next(config.errors.exceededMaxLength);
     } else {
       next();
     }

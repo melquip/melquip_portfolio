@@ -1,6 +1,6 @@
 const projectsRouter = require('express').Router();
-
 const Projects = require('../models')('projects');
+const config = require('../config');
 const {
   handleErrors,
   validateId,
@@ -14,7 +14,7 @@ projectsRouter.get('/', async (req, res, next) => {
     if (projects.length) {
       res.status(200).json(projects);
     } else {
-      next({ message: "No projects were found!", status: 404 });
+      next(config.errors.projectNotFound);
     }
   } catch (error) {
     next(error);
@@ -32,7 +32,7 @@ projectsRouter.post('/', validateProjectPost, async (req, res, next) => {
     if (newProject && newProject.id) {
       res.status(200).json(newProject);
     } else {
-      next({ message: "Couldn't add project to database!" });
+      next(config.errors.couldntAddProject);
     }
   } catch (error) {
     next(error);
@@ -47,7 +47,7 @@ projectsRouter.put('/:id', validateId, validateProjectPost, async (req, res, nex
     if (updatedProject && updatedProject.id) {
       res.status(200).json(updatedProject);
     } else {
-      next({ message: "Couldn't update project info!" });
+      next(config.errors.couldntUpdateProject);
     }
   } catch (error) {
     next(error);
@@ -61,7 +61,7 @@ projectsRouter.delete('/:id', validateId, async (req, res, next) => {
     if (deleted) {
       res.status(200).json({ message: "Successfully deleted project " + id + "!" });
     } else {
-      next({ message: "Couldn't delete project!" });
+      next(config.errors.couldntDeleteProject);
     }
   } catch (error) {
     next(error);
