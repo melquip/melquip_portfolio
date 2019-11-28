@@ -1,6 +1,6 @@
 const projectsRouter = require('express').Router();
 
-const Projects = require('../models/projectsModel');
+const Projects = require('../models')('projects');
 const {
   handleErrors,
   validateId,
