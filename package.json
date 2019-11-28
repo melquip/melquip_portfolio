@@ -8,13 +8,15 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
-    "knex": "^0.20.3"
+    "knex": "^0.20.3",
+    "sqlite3": "^4.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "updateDB": "npx knex migrate:latest --env development",
+    "updateDBTest": "npx knex migrate:latest --env testing"
   },
   "repository": {
     "type": "git",
