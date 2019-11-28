@@ -15,7 +15,9 @@
     "nodemon": "^2.0.1"
   },
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+    "build": "cd client && npm run build",
+    "server": "nodemon index.js",
     "updateDB": "npx knex migrate:latest --env development",
     "updateDBTest": "npx knex migrate:latest --env testing"
   },
