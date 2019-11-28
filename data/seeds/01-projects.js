@@ -1,8 +1,6 @@
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
+exports.seed = function (knex) {
   return knex('projects').truncate()
     .then(function () {
-      // Inserts seed entries
       return knex('projects').insert([
         {
           title: "This website - Portfolio",

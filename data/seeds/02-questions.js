@@ -1,12 +1,17 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('questions').del()
     .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('questions').insert([
+        {
+          question: "What is the question?",
+          answer: "The question is just a question. The question is just a question. The question is just a question.",
+          priority: 0,
+        },
+        {
+          question: "Do you have a question?",
+          answer: "Yes I do. Yes I do. Yes I do.",
+          priority: 1,
+        },
       ]);
     });
 };
