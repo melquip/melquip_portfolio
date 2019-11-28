@@ -2,26 +2,38 @@ import React, { useState, useEffect } from 'react';
 import Slick from 'react-slick';
 import styled from 'styled-components';
 import Tilt from 'react-tilt';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 const StyledAbout = styled.section`
   overflow: hidden;
+  cursor: move;
+  cursor: grab;
+  &.grabbed {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
 `;
 
 const StyledSlick = styled(Slick)`
-  cursor: move;
   margin-left: -.3rem;
 `;
 
 const Slide = styled.div`
   padding-bottom: 1rem;
   p {
-    font-size: 7.5rem;
-    line-height: 8.25rem;
+    font-size: 10vmin;
+    line-height: 11vmin;
     font-family: ${props => props.theme.fonts.secondary};
     color: ${props => props.theme.colors.purple};
     transition: transform .33s ease-in-out;
     &:hover {
       transform: translateX(0) scale(.98);
+    }
+    @media ${props => props.theme.mediaDesktop} {
+      font-size: 12vmin;
+      line-height: 13vmin;
     }
   }
 `;
@@ -52,38 +64,21 @@ const settingsTilt = {
 }
 
 const About = (props) => {
-  const [aboutSlides, setAboutSlides] = useState([]);
+  const { about, getAbout } = props;
+  const [grabbed, setGrabbed] = useState(false);
 
   useEffect(() => {
-    setAboutSlides([
-      [
-        "Hi, I'm Melqui,",
-        "22 years old,",
-        "portuguese,",
-        "full-stack developer",
-        "& gamer",
-      ],
-      [
-        "Hi, I'm Melqui,",
-        "22 years old,",
-        "portuguese,",
-        "full-stack developer",
-        "& gamer",
-      ],
-      [
-        "Hi, I'm Melqui,",
-        "22 years old,",
-        "portuguese,",
-        "full-stack developer",
-        "& gamer",
-      ]
-    ]);
+    getAbout();
   }, []);
 
   return (
-    <StyledAbout className="about">
+    <StyledAbout
+      className={'about' + (grabbed ? ' grabbed' : '')}
+      onMouseDown={() => setGrabbed(true)}
+      onMouseUp={() => setGrabbed(false)}
+    >
       <StyledSlick {...settingsSlider}>
-        {aboutSlides.length ? aboutSlides.map((slide, i) => (
+        {about.length ? about.map((slide, i) => (
           <Slide key={i}>
             <Tilt options={settingsTilt}>
               <div className="inner">
@@ -97,4 +92,4 @@ const About = (props) => {
   )
 }
 
-export default About;
+export default connect(state => state, actionCreators)(About);

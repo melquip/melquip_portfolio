@@ -72,11 +72,12 @@ section {
 }
 
 h1 {
-  margin-left: -5px;  
+  margin-left: -0.05em;
   font-size: 5rem;
   font-family: ${props => props.theme.fonts.secondary};
   margin-bottom: 3rem;
-  color: ${props => props.theme.colors.purple}
+  color: ${props => props.theme.colors.purple};
+  background: ${props => props.theme.colors.white};
 }
 
 
@@ -84,7 +85,22 @@ h1 {
   display: block;
   width: 100%;
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: 300px;
+  @media ${props => props.theme.mediaTiny} {
+    max-width: 320px;
+  }
+  @media ${props => props.theme.mediaMobile} {
+    max-width: 420px;
+  }
+  @media ${props => props.theme.mediaTablet} {
+    max-width: 620px;
+  }
+  @media ${props => props.theme.mediaDesktop} {
+    max-width: 900px;
+  }
+  @media ${props => props.theme.mediaLarger} {
+    max-width: 1024px;
+  }
 }
 
 .flex {
@@ -92,6 +108,7 @@ h1 {
   flex-flow: row wrap;
   flex-grow: 1;
   flex-shrink: 1;
+  justify-content: space-between; 
   &.nowrap {
     flex-wrap: nowrap;
   }
@@ -114,5 +131,27 @@ h1 {
     max-width: calc(100% / 5);
     flex-basis: calc(100% / 5);
   }
+}
+
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .7rem 1rem;
+  background-color: ${props => props.theme.colors.lightgray};
+  color: ${props => props.theme.colors.purple};
+  transition: all .2s ease-in-out;
+}
+
+
+svg#pageTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.slick-dots li button:before, .slick-dots li.slick-active button:before {
+  font-size: .65rem;
+  color: ${props => props.theme.colors.blue};
 }
 `;
