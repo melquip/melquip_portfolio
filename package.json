@@ -14,9 +14,12 @@
   "devDependencies": {
     "nodemon": "^2.0.1"
   },
+  "engines": {
+    "node": "12.13.0",
+    "npm": "6.12.1"
+  },
   "scripts": {
     "start": "node index.js",
-    "build": "cd client && npm run build",
     "server": "nodemon index.js",
     "updateDB": "npx knex migrate:latest --env development",
     "updateDBTest": "npx knex migrate:latest --env testing"
