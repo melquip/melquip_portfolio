@@ -1,4 +1,5 @@
 import React from 'react';
+import SVGTitle from './SVGTitle';
 
 const Loading = () => {
   return (
