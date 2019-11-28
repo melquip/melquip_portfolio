@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
+import Loading from './Loading';
 
 const StyledAbout = styled.section`
   overflow: hidden;
@@ -68,8 +69,14 @@ const About = (props) => {
   const [grabbed, setGrabbed] = useState(false);
 
   useEffect(() => {
-    getAbout();
+    if (!about.length) {
+      getAbout();
+    }
   }, []);
+
+  if(!about.length) {
+    return <Loading />;
+  }
 
   return (
     <StyledAbout
@@ -78,11 +85,11 @@ const About = (props) => {
       onMouseUp={() => setGrabbed(false)}
     >
       <StyledSlick {...settingsSlider}>
-        {about.length ? about.map((slide, i) => (
-          <Slide key={i}>
+        {about.length ? about.map(slide => (
+          <Slide key={slide.id}>
             <Tilt options={settingsTilt}>
               <div className="inner">
-                {slide.map((line, j) => <p key={j}>{line}</p>)}
+                {slide.line.map((text, i) => <p key={i}>{text}</p>)}
               </div>
             </Tilt>
           </Slide>

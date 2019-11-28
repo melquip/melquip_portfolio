@@ -1,0 +1,32 @@
+{
+  "name": "melquip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "knex": "^0.20.3",
+    "sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js",
+    "updateDB": "npx knex migrate:latest --env development",
+    "updateDBTest": "npx knex migrate:latest --env testing"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melquip/melquip_portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melquip/melquip_portfolio/issues"
+  },
+  "homepage": "https://github.com/melquip/melquip_portfolio#readme"
+}
