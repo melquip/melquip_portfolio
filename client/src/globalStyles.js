@@ -154,4 +154,13 @@ svg#pageTitle {
   font-size: .65rem;
   color: ${props => props.theme.colors.blue};
 }
+
+.dashboardPaper {
+  width: '100%';
+  overflow-x: auto;
+}
+
+.dashboardTable {
+  min-width: 650px;
+}
 `;
