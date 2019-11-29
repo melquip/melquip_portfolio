@@ -3,6 +3,7 @@ const About = require('../models')('about');
 const config = require('../config');
 const {
   handleErrors,
+  requireLogin,
   validateId,
   validateAboutReq,
   validateAboutPost
@@ -25,7 +26,7 @@ aboutRouter.get('/:id', validateId, validateAboutReq, async (req, res, next) => 
   res.status(200).json(req.aboutLine);
 });
 
-aboutRouter.post('/', validateAboutPost, async (req, res, next) => {
+aboutRouter.post('/', requireLogin, validateAboutPost, async (req, res, next) => {
   try {
     const { line, priority } = req.body;
     const newAboutLine = await About.addOne({ line, priority });
@@ -39,7 +40,7 @@ aboutRouter.post('/', validateAboutPost, async (req, res, next) => {
   }
 });
 
-aboutRouter.put('/:id', validateId, validateAboutPost, async (req, res, next) => {
+aboutRouter.put('/:id', requireLogin, validateId, validateAboutPost, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { line, priority } = req.body;
@@ -54,7 +55,7 @@ aboutRouter.put('/:id', validateId, validateAboutPost, async (req, res, next) =>
   }
 });
 
-aboutRouter.delete('/:id', validateId, async (req, res, next) => {
+aboutRouter.delete('/:id', requireLogin, validateId, async (req, res, next) => {
   try {
     const { id } = req.params;
     const deleted = await About.deleteOne(id);

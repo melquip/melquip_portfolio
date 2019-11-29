@@ -3,6 +3,7 @@ const Projects = require('../models')('projects');
 const config = require('../config');
 const {
   handleErrors,
+  requireLogin,
   validateId,
   validateProjectReq,
   validateProjectPost
@@ -25,7 +26,7 @@ projectsRouter.get('/:id', validateId, validateProjectReq, (req, res, next) => {
   res.status(200).json(req.project);
 });
 
-projectsRouter.post('/', validateProjectPost, async (req, res, next) => {
+projectsRouter.post('/', requireLogin, validateProjectPost, async (req, res, next) => {
   try {
     const { title, summary, description, urlLive, urlRepo, priority } = req.body;
     const newProject = await Projects.addOne({ title, summary, description, urlLive, urlRepo, priority });
@@ -39,7 +40,7 @@ projectsRouter.post('/', validateProjectPost, async (req, res, next) => {
   }
 });
 
-projectsRouter.put('/:id', validateId, validateProjectPost, async (req, res, next) => {
+projectsRouter.put('/:id', requireLogin, validateId, validateProjectPost, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { title, summary, description, urlLive, urlRepo, priority } = req.body;
@@ -54,7 +55,7 @@ projectsRouter.put('/:id', validateId, validateProjectPost, async (req, res, nex
   }
 });
 
-projectsRouter.delete('/:id', validateId, async (req, res, next) => {
+projectsRouter.delete('/:id', requireLogin, validateId, async (req, res, next) => {
   try {
     const { id } = req.params;
     const deleted = await Projects.deleteOne(id);

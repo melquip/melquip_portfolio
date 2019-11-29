@@ -3,6 +3,7 @@ const Questions = require('../models')('questions');
 const config = require('../config');
 const {
   handleErrors,
+  requireLogin,
   validateId,
   validateQuestionReq,
   validateQuestionPost
@@ -25,7 +26,7 @@ questionsRouter.get('/:id', validateId, validateQuestionReq, (req, res, next) =>
   res.status(200).json(req.question);
 });
 
-questionsRouter.post('/', validateQuestionPost, async (req, res, next) => {
+questionsRouter.post('/', requireLogin, validateQuestionPost, async (req, res, next) => {
   try {
     const { question, answer, priority } = req.body;
     const newQuestion = await Questions.addOne({ question, answer, priority });
@@ -39,7 +40,7 @@ questionsRouter.post('/', validateQuestionPost, async (req, res, next) => {
   }
 });
 
-questionsRouter.put('/:id', validateId, validateQuestionPost, async (req, res, next) => {
+questionsRouter.put('/:id', requireLogin, validateId, validateQuestionPost, async (req, res, next) => {
   try {
     const { id } = req.params;
     const { question, answer, priority } = req.body;
@@ -54,7 +55,7 @@ questionsRouter.put('/:id', validateId, validateQuestionPost, async (req, res, n
   }
 });
 
-questionsRouter.delete('/:id', validateId, async (req, res, next) => {
+questionsRouter.delete('/:id', requireLogin, validateId, async (req, res, next) => {
   try {
     const { id } = req.params;
     const deleted = await Questions.deleteOne(id);
