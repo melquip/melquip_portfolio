@@ -38,10 +38,15 @@ export const getAbout = () => dispatch => {
 }
 
 export const login = (form) => dispatch => {
-  axios.post(`${server}/login`, form).then(({ data: user }) => {
+  axios.post(`${server}/login`, form).then(response => {
     dispatch({
       type: types.SET_USER,
-      payload: user
+      payload: response.data
     })
+  }).catch(err => {
+    dispatch({
+      type: types.SET_USER,
+      payload: err.response.data
+    });
   });
 }
