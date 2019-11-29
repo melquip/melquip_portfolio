@@ -2,6 +2,7 @@ const Projects = require('../models')('projects');
 const Questions = require('../models')('questions');
 const About = require('../models')('about');
 const config = require('../config');
+const jwt = require('jsonwebtoken');
 
 // error middleware
 function handleErrors(name, router) {
@@ -112,8 +113,25 @@ function validateAboutPost(req, res, next) {
   }
 }
 
+function requireLogin(req, res, next) {
+  const token = req.headers.authorization;
+  if (token) {
+    jwt.verify(token, config.jwtSecret, (err, decodedUser) => {
+      if (err) {
+        next(err);
+      } else {
+        req.loggedInUser = decodedUser;
+        next();
+      }
+    });
+  } else {
+    next(config.errors.noTokenProvided);
+  }
+}
+
 module.exports = {
   handleErrors,
+  requireLogin,
   validateId,
   validateProjectReq,
   validateProjectPost,
