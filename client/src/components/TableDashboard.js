@@ -12,9 +12,10 @@ import * as actionCreators from '../actions';
 import DatabaseTable from './DatabaseTable';
 
 const server = process.env.REACT_APP_API;
-const options = {
+let user = JSON.parse(localStorage.getItem('melquip_user'));
+let options = {
   headers: {
-    Authorization: JSON.parse(localStorage.getItem('melquip_user')).token
+    authorization: user && user.token ? user.token : null,
   }
 }
 const TableDashboard = (props) => {
@@ -29,7 +30,12 @@ const TableDashboard = (props) => {
         setTableData(response.data);
       }).catch(err => console.error(err));
     }
-  }, []);
+    if(user) {
+      options.headers.authorization = (user && user.token ? user.token : null);
+    } else {
+      user = JSON.parse(localStorage.getItem('melquip_user'))
+    }
+  }, [user]);
 
   const onInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
