@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { 
+import {
   Grid, 
   TextField, 
-  FormControlLabel, 
-  Checkbox, 
   Button 
 } from '@material-ui/core';
 import { connect } from 'react-redux';
@@ -23,6 +21,7 @@ const Login = (props) => {
     e.preventDefault();
     login(loginForm);
     setLoginForm(initialLoginFormState);
+    props.history.push('/admin/dashboard');
   }
 
   const onLoginFormChange = (e) => {
@@ -62,7 +61,8 @@ const Login = (props) => {
               />
             </Grid>
           </Grid>
-          { user && user.message ? user.message : null }
+          <br/>
+          { user && user.message ? <p>{user.message}</p> : null }
           <Button
             type="submit"
             fullWidth
