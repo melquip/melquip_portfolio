@@ -37,16 +37,23 @@ export const getAbout = () => dispatch => {
   });
 }
 
-export const login = (form) => dispatch => {
+export const login = (form, history) => dispatch => {
   axios.post(`${server}/login`, form).then(response => {
     dispatch({
       type: types.SET_USER,
       payload: response.data
-    })
+    });
+    history.push('/admin/dashboard');
   }).catch(err => {
     dispatch({
       type: types.SET_USER,
       payload: err.response.data
     });
   });
+}
+
+export const logout = () => {
+  return {
+    type: types.LOGOUT,
+  }
 }

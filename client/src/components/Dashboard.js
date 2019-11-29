@@ -1,5 +1,8 @@
 import React from 'react';
 import TableDashboard from './TableDashboard';
+import { Button } from '@material-ui/core';
+import { connect } from 'react-redux';
+import * as actionCreators from '../actions';
 
 const initialAboutState = {
   id: 0,
@@ -21,11 +24,19 @@ const initialQuestionsState = {
   answer: "",
   priority: 0
 }
-// number, string, text, url
+
 const Dashboard = (props) => {
+  const { logout, history } = props;
+  const onLogout = () => {
+    logout();
+    history.push('/');
+  }
   return (
     <section className="dashboard">
       <div className="inner">
+        <Button variant="contained" color="primary" onClick={onLogout}>Logout</Button>
+        <br />
+        <br />
         <h1>About</h1>
         <TableDashboard
           table="about"
@@ -51,4 +62,4 @@ const Dashboard = (props) => {
   )
 }
 
-export default Dashboard;
+export default connect(state => state, actionCreators)(Dashboard);

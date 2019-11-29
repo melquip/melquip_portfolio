@@ -42,6 +42,8 @@ export function userReducer(state = initialUsersState, action) {
   switch (action.type) {
     case types.SET_USER:
       return action.payload;
+    case types.LOGOUT:
+      return initialUsersState;
     default:
       return state;
   }
