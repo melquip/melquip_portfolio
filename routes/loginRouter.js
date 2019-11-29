@@ -2,6 +2,7 @@ const config = require('../config');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const loginRouter = require('express').Router();
+const { handleErrors } = require('../middleware');
 
 loginRouter.post('/', async (req, res, next) => {
   try {
