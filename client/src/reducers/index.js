@@ -36,3 +36,13 @@ export function questionsReducer(questions = initialQuestionsState, action) {
       return questions;
   }
 } 
+
+const initialUsersState = {};
+export function userReducer(state = initialUsersState, action) {
+  switch (action.type) {
+    case types.SET_USER:
+      return action.payload;
+    default:
+      return state;
+  }
+}

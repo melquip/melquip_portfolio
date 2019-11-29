@@ -36,3 +36,12 @@ export const getAbout = () => dispatch => {
     });
   });
 }
+
+export const login = (form) => dispatch => {
+  axios.post(`${server}/login`, form).then(({ data: user }) => {
+    dispatch({
+      type: types.SET_USER,
+      payload: user
+    })
+  });
+}

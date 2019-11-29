@@ -5,6 +5,7 @@ import { loadState, saveState } from './utils';
 import throttle from 'lodash/throttle';
 
 const persistedStateKeysInLocalStorage = [
+  'user',
   'about',
   'projects',
   'questions',
@@ -12,6 +13,7 @@ const persistedStateKeysInLocalStorage = [
 const store = createStore(
   // reducers
   combineReducers({
+    user: reducers.userReducer,
     about: reducers.aboutReducer,
     projects: reducers.projectsReducer,
     questions: reducers.questionsReducer,
