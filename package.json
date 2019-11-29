@@ -4,10 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.3",
     "pg": "^7.14.0",
     "sqlite3": "^4.1.0"
@@ -21,6 +23,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "client": "cd client && npm start",
     "server": "nodemon index.js",
     "updateDB": "npx knex migrate:latest --env development",
     "updateDBTest": "npx knex migrate:latest --env testing"
