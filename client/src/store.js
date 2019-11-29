@@ -6,9 +6,12 @@ import throttle from 'lodash/throttle';
 
 const persistedStateKeysInLocalStorage = [
   'user',
+  /*
   'about',
   'projects',
   'questions',
+  */ 
+  // use cookie (or other method) to refresh local storage on client
 ];
 const store = createStore(
   // reducers

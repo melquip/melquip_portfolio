@@ -1,10 +1,9 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const config = require('../config');
 
 const server = express();
-
-const config = require('../config');
 
 server.use(helmet());
 server.use(cors({ origin: config.origin }));
