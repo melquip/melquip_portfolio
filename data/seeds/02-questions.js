@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-  return knex('questions').del()
+  return knex('questions').truncate()
     .then(function () {
       return knex('questions').insert([
         {
