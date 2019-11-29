@@ -1,13 +1,13 @@
+require('dotenv').config();
 const bcrypt = require('bcryptjs');
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
+const config = require('../../config');
+exports.seed = function (knex) {
+  return knex('users').truncate()
     .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
+      return knex('users').insert([
         {
           username: 'melquip',
-          password: bcrypt.hashSync(process.env.ADMINPW, 11),
+          password: bcrypt.hashSync(config.adminPassword, 11),
         },
       ]);
     });

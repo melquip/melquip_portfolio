@@ -1,5 +1,5 @@
 module.exports = {
-  env: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+  env: process.env.NODE_ENV || 'development',
   port: process.env.PORT,
   origin: [
     'http://localhost:3000',
@@ -7,6 +7,8 @@ module.exports = {
     'https://www.melquip.com'
   ],
   productionDB: process.env.DATABASE_URL,
+  jwtSecret: process.env.JWTSECRET,
+  adminPassword: process.env.ADMINPW,
   errors: {
     invalidId: { message: "Invalid asset id!", status: 401 },
     missingFields: { message: "Missing one of the required fields!", status: 401 },
@@ -26,5 +28,6 @@ module.exports = {
     couldntAddQuestion: { message: "Couldn't add question to database!" },
     couldntUpdateQuestion: { message: "Couldn't update question info!" },
     couldntDeleteQuestion: { message: "Couldn't delete question!" },
+    noTokenProvided: { message: "You need to login in order to gain access!", status: 403 }
   }
 }

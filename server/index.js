@@ -18,10 +18,12 @@ server.get("/", (req, res) => {
 const aboutRouter = require('../routes/aboutRouter');
 const projectsRouter = require('../routes/projectsRouter');
 const questionsRouter = require('../routes/questionsRouter');
+const loginRouter = require('../routes/loginRouter');
 
 server.use("/api/about", aboutRouter);
 server.use("/api/projects", projectsRouter);
 server.use("/api/questions", questionsRouter);
+server.use("/login", loginRouter);
 
 function logger(req, res, next) {
   console.log(`${req.method} to ${req.url}`);
