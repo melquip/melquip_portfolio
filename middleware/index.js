@@ -105,7 +105,7 @@ function validateAboutPost(req, res, next) {
   if (!line || typeof priority !== 'number') {
     next(config.errors.missingFields);
   } else {
-    if (question.length > 255) {
+    if (line.length > 255) {
       next(config.errors.exceededMaxLength);
     } else {
       next();
