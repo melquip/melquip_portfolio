@@ -12,21 +12,27 @@ loginRouter.post('/', async (req, res, next) => {
       next(config.errors.missingFields);
       return;
     }
-    const user = await db('users').first();
-    const isValidPassword = bcrypt.compareSync(password, user.password);
-    if (isValidPassword) {
-      const token = jwt.sign({
-        subject: user.id,
-        username: user.username,
-      }, config.jwtSecret, {
-		    expiresIn: "2h"
-      });
-      res.status(200).json({
-        id: user.id,
-        username: user.username,
-        token
-      })
+    const user = await db('users').where({ username }).first();
+    if(!user) {
+      next(config.errors.invalidLogin);
+      return;
     }
+    const isValidPassword = bcrypt.compareSync(password, user.password);
+    if(!isValidPassword) {
+      next(config.errors.invalidLogin);
+      return;
+    }
+    const token = jwt.sign({
+      subject: user.id,
+      username: user.username,
+    }, config.jwtSecret, {
+      expiresIn: "2h"
+    });
+    res.status(200).json({
+      id: user.id,
+      username: user.username,
+      token
+    });
   } catch (error) {
     next(error);
   }

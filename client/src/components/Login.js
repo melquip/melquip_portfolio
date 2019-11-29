@@ -16,7 +16,7 @@ const initialLoginFormState = {
   password: "",
 }
 const Login = (props) => {
-  const { login } = props;
+  const { user, login } = props;
   const [loginForm, setLoginForm] = useState(initialLoginFormState);
 
   const onLogin = (e) => {
@@ -62,6 +62,7 @@ const Login = (props) => {
               />
             </Grid>
           </Grid>
+          { user && user.message ? user.message : null }
           <Button
             type="submit"
             fullWidth

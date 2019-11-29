@@ -28,6 +28,7 @@ module.exports = {
     couldntAddQuestion: { message: "Couldn't add question to database!" },
     couldntUpdateQuestion: { message: "Couldn't update question info!" },
     couldntDeleteQuestion: { message: "Couldn't delete question!" },
-    noTokenProvided: { message: "You need to login in order to gain access!", status: 403 }
+    noTokenProvided: { message: "You need to login in order to gain access!", status: 403 },
+    invalidLogin: { message: "Invalid username or password", status: 401 },
   }
 }
