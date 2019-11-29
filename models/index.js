@@ -23,7 +23,7 @@ function tableModel(table) {
     return db(table)
       .where({ id })
       .update(data)
-      .then(ids => getOne({ id: ids[0] }));
+      .then(updated => getOne({ id }));
   }
   
   const deleteOne = (id) => {
