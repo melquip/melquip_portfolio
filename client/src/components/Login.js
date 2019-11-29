@@ -6,6 +6,7 @@ import {
 } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
+import SVGTitle from './SVGTitle';
 // <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 // npm install @material-ui/icons
@@ -14,14 +15,13 @@ const initialLoginFormState = {
   password: "",
 }
 const Login = (props) => {
-  const { user, login } = props;
+  const { user, login, history } = props;
   const [loginForm, setLoginForm] = useState(initialLoginFormState);
 
   const onLogin = (e) => {
     e.preventDefault();
-    login(loginForm);
+    login(loginForm, history);
     setLoginForm(initialLoginFormState);
-    props.history.push('/admin/dashboard');
   }
 
   const onLoginFormChange = (e) => {
@@ -31,6 +31,7 @@ const Login = (props) => {
   return (
     <section className="admin">
       <div className="inner">
+        <SVGTitle>Login</SVGTitle>
         <form noValidate onSubmit={onLogin}>
           <Grid container spacing={2}>
             <Grid item xs={12}>

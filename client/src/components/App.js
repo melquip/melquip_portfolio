@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -17,7 +17,14 @@ const App = (props) => {
       <Header />
       <Route exact path="/" component={About} />
       <Route exact path="/admin" component={Login} />
-      <Route path="/admin/dashboard" component={Dashboard} />
+      <Route path="/admin/dashboard" render={props => {
+        const user = JSON.parse(localStorage.getItem('melquip_user'));
+        if(user && user.token) {
+          return <Dashboard {...props} />;
+        } else {
+          return <Redirect to="/admin" />;
+        }
+      }} />
       <Route exact path="/work" component={Work} />
       <Route path="/work/:id" component={WorkDetails} />
       <Route path="/faq" component={Questions} />

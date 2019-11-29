@@ -22,7 +22,7 @@ const TableDashboard = (props) => {
   const { table, initialState, fieldTypes } = props;
   const [form, setForm] = useState(initialState);
   const [tableData, setTableData] = useState([]);
-
+  const allFields = Object.keys(initialState);
   useEffect(() => {
     if (!tableData.length) {
       axios.get(`${server}/api/${table}`).then(response => {
@@ -37,8 +37,14 @@ const TableDashboard = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    let data = form;
+    fieldTypes.forEach((fieldType, i) => {
+      if(fieldType === 'number') {
+        data[allFields[i]] = Number(data[allFields[i]]);
+      }
+    });
     if (form.id === 0) { // add
-      axios.post(`${server}/api/${table}`, form, options).then(response => {
+      axios.post(`${server}/api/${table}`, data, options).then(response => {
         if (response.data.id) {
           setTableData(tableData.concat(response.data));
           setForm(initialState);
@@ -47,7 +53,7 @@ const TableDashboard = (props) => {
         }
       }).catch(err => console.error(err));
     } else { // edit
-      axios.put(`${server}/api/${table}/${form.id}`, form, options).then(response => {
+      axios.put(`${server}/api/${table}/${form.id}`, data, options).then(response => {
         if (response.data) {
           setTableData(tableData.map(row => (row.id === form.id ? response.data : row)));
           setForm(initialState);
@@ -76,7 +82,7 @@ const TableDashboard = (props) => {
     <>
       <DatabaseTable
         table={tableData}
-        fields={Object.keys(initialState)}
+        fields={allFields}
         onEdit={onEdit}
         onDelete={onDelete}
       />
@@ -84,64 +90,53 @@ const TableDashboard = (props) => {
       <br />
       <form noValidate onSubmit={onSubmit}>
         <Grid container>
-          {Object.keys(initialState).map((field, i) => {
-            switch (fieldTypes[i]) {
-              case 'number':
-                return <>
-                  <TextField
-                    key={table + '_' + field}
-                    margin="normal"
-                    variant="outlined"
-                    type="number"
-                    required
-                    fullWidth
-                    id={table + '_' + field}
-                    label={field}
-                    name={field}
-                    autoComplete={field}
-                    value={form[field]}
-                    onChange={onInputChange}
-                  />
-                </>
-                break;
-              case 'string':
-                return <>
-                  <TextField
-                    key={table + '_' + field}
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    id={table + '_' + field}
-                    label={field}
-                    name={field}
-                    autoComplete={field}
-                    value={form[field]}
-                    onChange={onInputChange}
-                  />
-                </>
-                break;
-              case 'text':
-                return <>
-                  <TextField
-                    key={table + '_' + field}
-                    variant="outlined"
-                    margin="normal"
-                    multiline
-                    required
-                    fullWidth
-                    id={table + '_' + field}
-                    label={field}
-                    name={field}
-                    autoComplete={field}
-                    value={form[field]}
-                    onChange={onInputChange}
-                  />
-                </>
-                break;
-              default:
-                break;
+          {allFields.map((field, i) => {
+            if (fieldTypes[i] === 'number') {
+              return <TextField
+                key={table + '_' + field}
+                margin="normal"
+                variant="outlined"
+                type="number"
+                required
+                fullWidth
+                id={table + '_' + field}
+                label={field}
+                name={field}
+                autoComplete={field}
+                value={form[field]}
+                onChange={onInputChange}
+              />
+            } else if (fieldTypes[i] === 'string') {
+              return <TextField
+                key={table + '_' + field}
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id={table + '_' + field}
+                label={field}
+                name={field}
+                autoComplete={field}
+                value={form[field]}
+                onChange={onInputChange}
+              />
+            } else if (fieldTypes[i] === 'text') {
+              return <TextField
+                key={table + '_' + field}
+                variant="outlined"
+                margin="normal"
+                multiline
+                required
+                fullWidth
+                id={table + '_' + field}
+                label={field}
+                name={field}
+                autoComplete={field}
+                value={form[field]}
+                onChange={onInputChange}
+              />
             }
+            return null;
           })}
         </Grid>
         <br />
