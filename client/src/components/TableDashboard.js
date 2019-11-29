@@ -69,7 +69,7 @@ const TableDashboard = (props) => {
   }
 
   const onDelete = (id) => e => {
-    axios.delete(`${server}/api/${table}/${id}`).then(response => {
+    axios.delete(`${server}/api/${table}/${id}`, options).then(response => {
       if (response.data) {
         setTableData(table.filter(row => row.id !== id));
       } else {
