@@ -10,30 +10,33 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
 import DatabaseTable from './DatabaseTable';
+import Loading from './Loading';
 
 const server = process.env.REACT_APP_API;
-let user = JSON.parse(localStorage.getItem('melquip_user'));
-let options = {
-  headers: {
-    authorization: user && user.token ? user.token : null,
-  }
-}
+
 const TableDashboard = (props) => {
-  //const { addAbout, editAbout, deleteAbout } = props;
+  let user = JSON.parse(localStorage.getItem('melquip_user'));
+  let options = {
+    headers: {
+      authorization: user && user.token ? user.token : null,
+    }
+  }
+
   const { table, initialState, fieldTypes } = props;
   const [form, setForm] = useState(initialState);
   const [tableData, setTableData] = useState([]);
   const allFields = Object.keys(initialState);
+
   useEffect(() => {
     if (!tableData.length) {
       axios.get(`${server}/api/${table}`).then(response => {
         setTableData(response.data);
       }).catch(err => console.error(err));
     }
-    if(user) {
-      options.headers.authorization = (user && user.token ? user.token : null);
+    if (!Object.keys(user).length) {
+      user = JSON.parse(localStorage.getItem('melquip_user'));
     } else {
-      user = JSON.parse(localStorage.getItem('melquip_user'))
+      options.headers.authorization = user.token;
     }
   }, [user]);
 
@@ -43,13 +46,14 @@ const TableDashboard = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    let data = form;
+    let data = { ...form };
     fieldTypes.forEach((fieldType, i) => {
-      if(fieldType === 'number') {
+      if (fieldType === 'number') {
         data[allFields[i]] = Number(data[allFields[i]]);
       }
     });
-    if (form.id === 0) { // add
+    if (form.id === 0) {
+      delete data.id;
       axios.post(`${server}/api/${table}`, data, options).then(response => {
         if (response.data.id) {
           setTableData(tableData.concat(response.data));
@@ -58,7 +62,7 @@ const TableDashboard = (props) => {
           console.error(response);
         }
       }).catch(err => console.error(err));
-    } else { // edit
+    } else {
       axios.put(`${server}/api/${table}/${form.id}`, data, options).then(response => {
         if (response.data) {
           setTableData(tableData.map(row => (row.id === form.id ? response.data : row)));
@@ -77,13 +81,16 @@ const TableDashboard = (props) => {
   const onDelete = (id) => e => {
     axios.delete(`${server}/api/${table}/${id}`, options).then(response => {
       if (response.data) {
-        setTableData(table.filter(row => row.id !== id));
+        setTableData(tableData.filter(row => row.id !== id));
       } else {
         console.error(response);
       }
     }).catch(err => console.error(err));
   }
 
+  if(!options.headers.authorization) {
+    return <Loading />;
+  }
   return (
     <>
       <DatabaseTable
