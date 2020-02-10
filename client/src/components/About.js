@@ -10,11 +10,8 @@ const StyledAbout = styled.section`
   overflow: hidden;
   cursor: move;
   cursor: grab;
-  &.grabbed {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-  }
+  min-height: 13vmin;
+  position: relative;
 `;
 
 const StyledSlick = styled(Slick)`
@@ -23,19 +20,45 @@ const StyledSlick = styled(Slick)`
 
 const Slide = styled.div`
   padding-bottom: 1rem;
+  position: relative;
+  &:not(:first-child){
+    position: absolute;
+    top: 4rem;
+    width: 100%;
+  }
   p {
     font-size: 10vmin;
     line-height: 11vmin;
+    will-change: transform, font-size;
+    transform: translateX(-100vw);
     font-family: ${props => props.theme.fonts.secondary};
     color: ${props => props.theme.colors.purple};
-    transition: transform .33s ease-in-out;
-    &:hover {
-      transform: translateX(0) scale(.98);
-    }
+    transition: transform .5s ease-in-out, font-size .33s ease-in-out;
+
     @media ${props => props.theme.mediaDesktop} {
       font-size: 12vmin;
       line-height: 13vmin;
     }
+
+    &.show {
+      transform: translateX(0);
+      &:hover {
+        font-size: 9.5vmin;
+        @media ${props => props.theme.mediaDesktop} {
+          font-size: 11.5vmin;
+        }
+      }
+    }
+    ${Array(20).join().split(',').map((el, i) => i > 1 ? `
+    &:nth-child(${i}) {
+      transition-delay: ${((i / 10) + ((i - 2) * 0.1)).toFixed(2)}s, 0s;
+    }
+    ` : false).filter(v => v !== false)}
+  }
+
+  z-index: 79;
+  &.active {
+    z-index: 80;
   }
 `;
 
@@ -67,6 +90,7 @@ const settingsTilt = {
 const About = (props) => {
   const { about, getAbout } = props;
   const [grabbed, setGrabbed] = useState(false);
+  const [currSlide, setCurrSlide] = useState(0);
 
   useEffect(() => {
     if (!about.length) {
@@ -74,7 +98,22 @@ const About = (props) => {
     }
   }, []);
 
-  if(!about.length) {
+  useEffect(() => {
+    let updateTimer;
+    if (about.length) {
+      updateTimer = setTimeout(() => {
+        setCurrSlide(currSlide => {
+          if (currSlide + 1 > about.length - 1) {
+            return 0
+          }
+          return currSlide + 1
+        });
+      }, 7000);
+    }
+    return () => clearTimeout(updateTimer)
+  }, [about, currSlide])
+
+  if (!about.length) {
     return <Loading />;
   }
 
@@ -84,17 +123,15 @@ const About = (props) => {
       onMouseDown={() => setGrabbed(true)}
       onMouseUp={() => setGrabbed(false)}
     >
-      <StyledSlick {...settingsSlider}>
-        {about.length ? about.map(slide => (
-          <Slide key={slide.id}>
-            <Tilt options={settingsTilt}>
-              <div className="inner">
-                {slide.line.map((text, i) => <p key={i}>{text}</p>)}
-              </div>
-            </Tilt>
-          </Slide>
-        )) : null}
-      </StyledSlick>
+      {about.length ? about.map((slide, i) => (
+        <Slide className={i === currSlide ? 'active' : ''} key={slide.id}>
+          <Tilt options={settingsTilt}>
+            <div className="inner">
+              {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
+            </div>
+          </Tilt>
+        </Slide>
+      )) : null}
     </StyledAbout>
   )
 }
