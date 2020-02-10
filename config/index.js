@@ -3,7 +3,9 @@ module.exports = {
   port: process.env.PORT,
   origin: [
     'http://www.melquip.com',
-    'https://www.melquip.com'
+    'https://www.melquip.com',
+    'http://localhost',
+    'http://localhost:3000'
   ],
   productionDB: process.env.DATABASE_URL,
   jwtSecret: process.env.JWTSECRET,
