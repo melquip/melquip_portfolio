@@ -107,7 +107,7 @@ const About = (props) => {
       onMouseUp={() => setGrabbed(false)}
     >
       {about.length ? about.map((slide, i) => (
-        <Slide className={i === currSlide ? 'active' : ''} key={slide.id}>
+        <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
           <Tilt options={settingsTilt}>
             <div className="inner">
               {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}

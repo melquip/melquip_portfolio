@@ -85,7 +85,7 @@ h1 {
   display: block;
   width: 100%;
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 280px;
   @media ${props => props.theme.mediaTiny} {
     max-width: 320px;
   }

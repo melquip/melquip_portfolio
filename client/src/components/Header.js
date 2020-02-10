@@ -11,19 +11,28 @@ const StyledHeader = styled.header`
     width: 100%;
     max-height: 50px;
     &.col.col-2 {
-      max-width: 100px;
-      flex-basis: 100px;
+      max-width: 60px;
+      flex-basis: 60px;
+      @media ${props => props.theme.mediaTiny} {
+        max-width: 100px;
+        flex-basis: 100px;
+      }
     }
     img {
       max-height: 100%;
       height: 100%;
+      object-fit: contain;
     }
   }
   .menu {
     justify-content: flex-end;
     &.col.col-2 {
-      max-width: calc(100% - 100px);
-      flex-basis: calc(100% - 100px);
+      max-width: calc(100% - 60px);
+      flex-basis: calc(100% - 60px);
+      @media ${props => props.theme.mediaTiny} {
+        max-width: calc(100% - 100px);
+        flex-basis: calc(100% - 100px);
+      }
     }
     a {
       font-size: 1.2rem;

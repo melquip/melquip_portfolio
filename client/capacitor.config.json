@@ -1,0 +1,8 @@
+{
+  "appId": "com.melquip.www",
+  "appName": "melquip",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

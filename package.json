@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@capacitor/cli": "^1.5.0",
+    "@capacitor/core": "^1.5.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -24,6 +26,9 @@
   "scripts": {
     "start": "node index.js",
     "client": "cd client && npm start",
+    "clientBuild": "cd client && npm start",
+    "androidBuild": "cd client && npm run build && npx cap sync android && npx cap open android",
+    "androidUpdate": "cd client && npx cap sync android && npx cap open android",
     "server": "nodemon index.js",
     "updateDB": "npx knex migrate:latest --env development",
     "updateDBTest": "npx knex migrate:latest --env testing"
