@@ -27,3 +27,8 @@ design
 
 .vscode
 /.env
+
+changes.txt
+*.jks
+/package-lock.json
+*.db3
