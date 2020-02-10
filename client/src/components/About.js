@@ -14,10 +14,6 @@ const StyledAbout = styled.section`
   position: relative;
 `;
 
-const StyledSlick = styled(Slick)`
-  margin-left: -.3rem;
-`;
-
 const Slide = styled.div`
   padding-bottom: 1rem;
   position: relative;
@@ -61,19 +57,6 @@ const Slide = styled.div`
     z-index: 80;
   }
 `;
-
-const settingsSlider = {
-  dots: true,
-  infinite: true,
-  accessibility: true,
-  speed: 1000,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: false,
-  autoplaySpeed: 4000,
-  onInit: () => {
-  }
-}
 
 const settingsTilt = {
   reverse: false,     // reverse the tilt direction
