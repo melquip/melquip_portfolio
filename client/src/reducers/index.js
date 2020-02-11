@@ -2,15 +2,15 @@ import * as types from '../actions/types';
 
 const initialAboutState = [
   {
-    line: "Hi, I'm Melqui,|23 years old,|portuguese,|full-stack|web developer",
+    line: "Hi, I'm Melqui,|23 years old,|portuguese,|full-stack|web developer".split('|'),
     priority: 10,
   },
   {
-    line: "I've worked|in web development|for 2 years|before starting|Lambda School",
+    line: "I've worked|in web development|for 2 years|before starting|Lambda School".split('|'),
     priority: 9,
   },
   {
-    line: "Now I'm looking|for remote|and exciting|new projects|to work on!",
+    line: "Now I'm looking|for remote|and exciting|new projects|to work on!".split('|'),
     priority: 8,
   }
 ];
