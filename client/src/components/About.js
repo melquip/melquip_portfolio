@@ -133,6 +133,7 @@ const About = (props) => {
         });
         setTimeout(() => {
           scrolling = false;
+          lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
           console.log('after scrolling', scrolling, 'st', st, 'last', lastScrollTop, st > lastScrollTop)
         }, 700);
       }
