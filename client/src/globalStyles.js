@@ -163,4 +163,19 @@ svg#pageTitle {
 .dashboardTable {
   min-width: 650px;
 }
+
+@keyframes pauseSlider {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: .25;
+  }
+  66% {
+    opacity: .25;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 `;

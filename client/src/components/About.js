@@ -1,15 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import Slick from 'react-slick';
 import styled from 'styled-components';
 import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 import Loading from './Loading';
 
+const SliderNav = styled.div`
+  text-align: center;
+  position: relative;
+  z-index: 100;
+  .nav {
+    cursor: pointer;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: ${props => props.theme.colors.lightblue};
+    border-radius: 100%;
+    margin-left: .7rem;
+    margin-right: .7rem;
+    &.active {
+      background: ${props => props.theme.colors.blue};
+    }
+    &.paused {
+      background: ${props => props.theme.colors.purple};
+      animation: pauseSlider infinite 1.5s;
+    }
+  }
+`;
+
 const StyledAbout = styled.section`
   overflow: hidden;
-  cursor: move;
-  cursor: grab;
   min-height: 13vmin;
   position: relative;
 `;
@@ -74,6 +94,8 @@ const About = (props) => {
   const { about, getAbout } = props;
   const [grabbed, setGrabbed] = useState(false);
   const [currSlide, setCurrSlide] = useState(0);
+  const [pause, setPause] = useState(false);
+  let updateTimer;
 
   useEffect(() => {
     if (!about.length) {
@@ -82,8 +104,7 @@ const About = (props) => {
   }, []);
 
   useEffect(() => {
-    let updateTimer;
-    if (about.length) {
+    if (about.length && !pause) {
       updateTimer = setTimeout(() => {
         setCurrSlide(currSlide => {
           if (currSlide + 1 > about.length - 1) {
@@ -94,10 +115,24 @@ const About = (props) => {
       }, 7000);
     }
     return () => clearTimeout(updateTimer)
-  }, [about, currSlide])
+  }, [about, currSlide, pause])
 
   if (!about.length) {
     return <Loading />;
+  }
+
+  const navOnClick = (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const currentSlide = parseInt(target.classList[1].split('-')[1]);
+    clearTimeout(updateTimer);
+    if (Array.from(target.classList).includes('active')) {
+      console.log(!pause)
+      setPause(pause => !pause);
+    } else {
+      setPause(pause => false);
+      setCurrSlide(currSlide => currentSlide);
+    }
   }
 
   return (
@@ -106,15 +141,32 @@ const About = (props) => {
       onMouseDown={() => setGrabbed(true)}
       onMouseUp={() => setGrabbed(false)}
     >
-      {about.length ? about.map((slide, i) => (
-        <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
-          <Tilt options={settingsTilt}>
-            <div className="inner">
-              {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
-            </div>
-          </Tilt>
-        </Slide>
-      )) : null}
+      {
+        about.length ?
+          about.map((slide, i) => (
+            <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
+              <Tilt options={settingsTilt}>
+                <div className="inner">
+                  {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
+                </div>
+              </Tilt>
+            </Slide>
+          ))
+          : null
+      }
+      {
+        about.length ?
+          <SliderNav>
+            {about.map((slide, i) => (
+              <div
+                key={`nav-${i}`}
+                onClick={navOnClick}
+                className={`nav nav-${i} ${i === currSlide ? 'active' + (pause ? ' paused' : '') : ''}`}>
+              </div>
+            ))}
+          </SliderNav>
+          : null
+      }
     </StyledAbout>
   )
 }
