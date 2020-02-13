@@ -2,10 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 75px;
+  width: 100%;
+  z-index: 1000;
+  background: ${props => props.theme.colors.white};
+
   .col:first-child {
     font-size: .8rem;
     color: ${props => props.theme.colors.blue};
-    line-height: 4.5rem;
+    line-height: 75px;
     span {
       color: ${props => props.theme.colors.red};
     }
@@ -18,7 +26,8 @@ const StyledFooter = styled.footer`
     justify-content: flex-end;
     a {
       font-size: 1.5rem;
-      padding: 1.55rem 1rem;
+      line-height: 75px;
+      padding: 0 1rem;
       transition: color .2s ease-in-out;
       &:hover {
         color: ${props => props.theme.colors.red};

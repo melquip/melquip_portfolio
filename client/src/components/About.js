@@ -4,6 +4,7 @@ import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 import Loading from './Loading';
+import AboutInfo from './AboutInfo';
 
 const SliderNav = styled.div`
   text-align: center;
@@ -30,7 +31,7 @@ const SliderNav = styled.div`
 
 const StyledAbout = styled.section`
   overflow: hidden;
-  min-height: 13vmin;
+  min-height: calc(100vh - 175px);
   position: relative;
 `;
 
@@ -92,7 +93,6 @@ const settingsTilt = {
 
 const About = (props) => {
   const { about, getAbout } = props;
-  const [grabbed, setGrabbed] = useState(false);
   const [currSlide, setCurrSlide] = useState(0);
   const [pause, setPause] = useState(false);
   let updateTimer;
@@ -136,38 +136,37 @@ const About = (props) => {
   }
 
   return (
-    <StyledAbout
-      className={'about' + (grabbed ? ' grabbed' : '')}
-      onMouseDown={() => setGrabbed(true)}
-      onMouseUp={() => setGrabbed(false)}
-    >
-      {
-        about.length ?
-          about.map((slide, i) => (
-            <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
-              <Tilt options={settingsTilt}>
-                <div className="inner">
-                  {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
+    <>
+      <StyledAbout>
+        {
+          about.length ?
+            about.map((slide, i) => (
+              <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
+                <Tilt options={settingsTilt}>
+                  <div className="inner">
+                    {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
+                  </div>
+                </Tilt>
+              </Slide>
+            ))
+            : null
+        }
+        {
+          about.length ?
+            <SliderNav>
+              {about.map((slide, i) => (
+                <div
+                  key={`nav-${i}`}
+                  onClick={navOnClick}
+                  className={`nav nav-${i} ${i === currSlide ? 'active' + (pause ? ' paused' : '') : ''}`}>
                 </div>
-              </Tilt>
-            </Slide>
-          ))
-          : null
-      }
-      {
-        about.length ?
-          <SliderNav>
-            {about.map((slide, i) => (
-              <div
-                key={`nav-${i}`}
-                onClick={navOnClick}
-                className={`nav nav-${i} ${i === currSlide ? 'active' + (pause ? ' paused' : '') : ''}`}>
-              </div>
-            ))}
-          </SliderNav>
-          : null
-      }
-    </StyledAbout>
+              ))}
+            </SliderNav>
+            : null
+        }
+      </StyledAbout>
+      <AboutInfo />
+    </>
   )
 }
 
