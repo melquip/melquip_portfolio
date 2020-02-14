@@ -1,8 +1,8 @@
-const db = require('../data/dbConfig.js');
-const config = require('../config');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const loginRouter = require('express').Router();
+const db = require('../data/dbConfig.js');
+const config = require('../config');
 const { handleErrors } = require('../middleware');
 
 loginRouter.post('/', async (req, res, next) => {
@@ -13,12 +13,12 @@ loginRouter.post('/', async (req, res, next) => {
       return;
     }
     const user = await db('users').where({ username }).first();
-    if(!user) {
+    if (!user) {
       next(config.errors.invalidLogin);
       return;
     }
     const isValidPassword = bcrypt.compareSync(password, user.password);
-    if(!isValidPassword) {
+    if (!isValidPassword) {
       next(config.errors.invalidLogin);
       return;
     }
@@ -26,12 +26,12 @@ loginRouter.post('/', async (req, res, next) => {
       subject: user.id,
       username: user.username,
     }, config.jwtSecret, {
-      expiresIn: "2h"
+      expiresIn: '2h',
     });
     res.status(200).json({
       id: user.id,
       username: user.username,
-      token
+      token,
     });
   } catch (error) {
     next(error);

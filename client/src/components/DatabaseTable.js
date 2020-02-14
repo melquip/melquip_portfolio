@@ -10,8 +10,6 @@ import {
 } from '@material-ui/core';
 import { Edit, Delete } from '@material-ui/icons';
 
-const server = process.env.REACT_APP_API;
-
 const DatabaseTable = (props) => {
   const { table, fields, onEdit, onDelete } = props;
 

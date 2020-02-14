@@ -4,9 +4,15 @@ import { Link } from 'react-router-dom';
 import logo from '../img/logoBlackAnimated.svg';
 
 const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100px;
   padding: 25px 0;
-  
+  background: ${props => props.theme.colors.white};
+  z-index: 1000;
+
   .logo {
     width: 100%;
     max-height: 50px;

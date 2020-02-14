@@ -1,17 +1,18 @@
+const jwt = require('jsonwebtoken');
 const Projects = require('../models')('projects');
 const Questions = require('../models')('questions');
 const About = require('../models')('about');
 const config = require('../config');
-const jwt = require('jsonwebtoken');
 
 // error middleware
 function handleErrors(name, router) {
+  // eslint-disable-next-line no-unused-vars
   router.use((error, req, res, next) => {
     res.status(error.status || 500).json({
       file: name,
       message: error.message || error,
       method: req.method,
-      url: req.url
+      url: req.url,
     });
   });
 }
@@ -43,15 +44,17 @@ async function validateProjectReq(req, res, next) {
 }
 
 function validateProjectPost(req, res, next) {
-  const { title, summary, description, urlLive, urlRepo, priority } = req.body;
+  const {
+    title, summary, description, urlLive, urlRepo, priority,
+  } = req.body;
   if (!title || !summary || !description || !urlLive || !urlRepo || typeof priority !== 'number') {
     next(config.errors.missingFields);
+  } else if (
+    title.length > 100 || summary.length > 255 || urlLive.length > 255 || urlRepo.length > 255
+  ) {
+    next(config.errors.exceededMaxLength);
   } else {
-    if (title.length > 100 || summary.length > 255 || urlLive.length > 255 || urlRepo.length > 255) {
-      next(config.errors.exceededMaxLength);
-    } else {
-      next();
-    }
+    next();
   }
 }
 
@@ -75,12 +78,10 @@ function validateQuestionPost(req, res, next) {
   const { question, answer, priority } = req.body;
   if (!question || !answer || typeof priority !== 'number') {
     next(config.errors.missingFields);
+  } else if (question.length > 255) {
+    next(config.errors.exceededMaxLength);
   } else {
-    if (question.length > 255) {
-      next(config.errors.exceededMaxLength);
-    } else {
-      next();
-    }
+    next();
   }
 }
 
@@ -104,12 +105,10 @@ function validateAboutPost(req, res, next) {
   const { line, priority } = req.body;
   if (!line || typeof priority !== 'number') {
     next(config.errors.missingFields);
+  } else if (line.length > 255) {
+    next(config.errors.exceededMaxLength);
   } else {
-    if (line.length > 255) {
-      next(config.errors.exceededMaxLength);
-    } else {
-      next();
-    }
+    next();
   }
 }
 
@@ -138,5 +137,5 @@ module.exports = {
   validateQuestionReq,
   validateQuestionPost,
   validateAboutReq,
-  validateAboutPost
-}
+  validateAboutPost,
+};

@@ -1,16 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import Slick from 'react-slick';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 import Loading from './Loading';
+import AboutInfo from './AboutInfo';
+
+const SliderNav = styled.div`
+  text-align: center;
+  position: relative;
+  z-index: 100;
+  .nav {
+    cursor: pointer;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: ${props => props.theme.colors.lightblue};
+    border-radius: 100%;
+    margin-left: .7rem;
+    margin-right: .7rem;
+    &.active {
+      background: ${props => props.theme.colors.blue};
+    }
+    &.paused {
+      background: ${props => props.theme.colors.purple};
+      animation: pauseSlider infinite 1.5s;
+    }
+  }
+`;
 
 const StyledAbout = styled.section`
   overflow: hidden;
-  cursor: move;
-  cursor: grab;
-  min-height: 13vmin;
+  min-height: calc(100vh - 175px);
   position: relative;
 `;
 
@@ -72,19 +93,19 @@ const settingsTilt = {
 
 const About = (props) => {
   const { about, getAbout } = props;
-  const [grabbed, setGrabbed] = useState(false);
   const [currSlide, setCurrSlide] = useState(0);
+  const [pause, setPause] = useState(false);
+
+  let updateTimer = useRef(setTimeout(() => false, 1));
 
   useEffect(() => {
-    if (!about.length) {
-      getAbout();
-    }
+    if (!about.length) getAbout();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    let updateTimer;
-    if (about.length) {
-      updateTimer = setTimeout(() => {
+    if (about.length && !pause) {
+      updateTimer.current = setTimeout(() => {
         setCurrSlide(currSlide => {
           if (currSlide + 1 > about.length - 1) {
             return 0
@@ -93,29 +114,59 @@ const About = (props) => {
         });
       }, 7000);
     }
-    return () => clearTimeout(updateTimer)
-  }, [about, currSlide])
+    return () => clearTimeout(updateTimer.current)
+  }, [about, currSlide, pause])
 
   if (!about.length) {
     return <Loading />;
   }
 
+  const navOnClick = (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const currentSlide = parseInt(target.classList[1].split('-')[1]);
+    clearTimeout(updateTimer.current);
+    if (Array.from(target.classList).includes('active')) {
+      console.log(!pause)
+      setPause(pause => !pause);
+    } else {
+      setPause(pause => false);
+      setCurrSlide(currSlide => currentSlide);
+    }
+  }
+
   return (
-    <StyledAbout
-      className={'about' + (grabbed ? ' grabbed' : '')}
-      onMouseDown={() => setGrabbed(true)}
-      onMouseUp={() => setGrabbed(false)}
-    >
-      {about.length ? about.map((slide, i) => (
-        <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
-          <Tilt options={settingsTilt}>
-            <div className="inner">
-              {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
-            </div>
-          </Tilt>
-        </Slide>
-      )) : null}
-    </StyledAbout>
+    <>
+      <StyledAbout id="about">
+        {
+          about.length ?
+            about.map((slide, i) => (
+              <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
+                <Tilt options={settingsTilt}>
+                  <div className="inner">
+                    {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
+                  </div>
+                </Tilt>
+              </Slide>
+            ))
+            : null
+        }
+        {
+          about.length ?
+            <SliderNav>
+              {about.map((slide, i) => (
+                <div
+                  key={`nav-${i}`}
+                  onClick={navOnClick}
+                  className={`nav nav-${i} ${i === currSlide ? 'active' + (pause ? ' paused' : '') : ''}`}>
+                </div>
+              ))}
+            </SliderNav>
+            : null
+        }
+      </StyledAbout>
+      {/* <AboutInfo /> */}
+    </>
   )
 }
 

@@ -17,7 +17,10 @@ const initialAboutState = [
 export function aboutReducer(state = initialAboutState, action) {
   switch (action.type) {
     case types.SET_ABOUT:
-      return action.payload.map(slide => ({ ...slide, line: slide.line.split('|') }));
+      return action.payload.map(slide => ({
+        ...slide,
+        line: slide.line.split('|')
+      }));
     default:
       return state;
   }
@@ -27,7 +30,11 @@ const initialProjectsState = [];
 export function projectsReducer(state = initialProjectsState, action) {
   switch (action.type) {
     case types.SET_PROJECTS:
-      return action.payload.map(project => ({ ...project, description: project.description.split('|') }));
+      return action.payload.map(project => ({
+        ...project,
+        description: project.description.split('|'),
+        tech: project.tech.split('|')
+      }));
     default:
       return state;
   }
@@ -48,7 +55,7 @@ export function questionsReducer(questions = initialQuestionsState, action) {
     default:
       return questions;
   }
-} 
+}
 
 const initialUsersState = {};
 export function userReducer(state = initialUsersState, action) {

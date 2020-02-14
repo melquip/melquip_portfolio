@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import SVGTitle from './SVGTitle';
@@ -10,7 +10,7 @@ const Project = styled(Link)`
   position: relative;
   cursor: pointer;
   padding: 1rem;
-  border: 2px solid ${props => props.theme.colors.black};
+  border: 2px solid ${props => props.theme.colors.lightgray};
   transition: all .2s ease-in-out;
   h3 {
     font-size: 1.75rem;
@@ -28,7 +28,14 @@ const Project = styled(Link)`
     h3 {
       color: ${props => props.theme.colors.orange};
     }
-    .button {
+    .button:not(.tech) {
+      background-color: ${props => props.theme.colors.red};
+      color: ${props => props.theme.colors.white};
+    }
+  }
+  .button.tech {
+    margin-right: 1rem;
+    &:hover {
       background-color: ${props => props.theme.colors.red};
       color: ${props => props.theme.colors.white};
     }
@@ -58,14 +65,13 @@ const StyledDetails = styled.section`
 `;
 
 const WorkDetails = (props) => {
-  const { project, type, projects, match, getProjects } = props; // , project
+  const { project, type, projects, match, getProjects } = props;
   useEffect(() => {
-    if (!projects.length) {
-      getProjects();
-    }
+    if (!projects.length) getProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const id = match ? Number(match.params.id) : null;
-  const singleProject = project ? project : projects.find(proj => proj.id === Number(id));
+  const url = match ? match.params.url : null;
+  const singleProject = project ? project : projects.find(proj => proj.url === url);
 
   if (!singleProject) {
     return <Loading />;
@@ -73,10 +79,15 @@ const WorkDetails = (props) => {
 
   return (
     type === 'list' ? (
-      <Project key={singleProject.id} to={'/work/' + singleProject.id} className="col col-2">
+      <Project key={singleProject.id} to={'/work/' + singleProject.url} className="col col-2">
         <h3>{singleProject.title}</h3>
         <p>{singleProject.summary}</p>
-        <div className="button"><i className="icon-eye"></i> View</div>
+        {
+          singleProject.tech.length ? 
+            singleProject.tech.map(t => <div key={t} className="button tech">{t}</div>)
+          : null
+        }
+        {/* <div className="button"><i className="icon-eye"></i> View</div> */}
       </Project>
     ) : (
         <StyledDetails className="portfolio_detail">

@@ -17,6 +17,12 @@
     "sqlite3": "^4.1.0"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "nodemon": "^2.0.1"
   },
   "engines": {
@@ -30,8 +36,10 @@
     "androidBuild": "cd client && npm run build && npx cap sync android && npx cap open android",
     "androidUpdate": "cd client && npx cap sync android && npx cap open android",
     "server": "nodemon index.js",
-    "updateDB": "npx knex migrate:latest --env development",
-    "updateDBTest": "npx knex migrate:latest --env testing"
+    "resetDB": "npx knex migrate:rollback",
+    "seedDB": "npx knex seed:run",
+    "updateDB": "npm run resetDB --env development && npx knex migrate:latest --env development && npm run seedDB --env development",
+    "updateDBTest": "npm run resetDB --env testing && npx knex migrate:latest --env testing"
   },
   "repository": {
     "type": "git",

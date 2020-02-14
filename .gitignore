@@ -30,5 +30,7 @@ design
 
 changes.txt
 *.jks
-/package-lock.json
+package-lock.json
+*/package-lock.json
 *.db3
+*/*.db3

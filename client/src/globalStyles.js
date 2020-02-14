@@ -33,6 +33,8 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
   font-family: ${props => props.theme.fonts.primary};
+  padding-top: 100px;
+  padding-bottom: 75px;
 }
 ol, ul {
 	list-style: none;
@@ -162,5 +164,20 @@ svg#pageTitle {
 
 .dashboardTable {
   min-width: 650px;
+}
+
+@keyframes pauseSlider {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: .25;
+  }
+  66% {
+    opacity: .25;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 `;
