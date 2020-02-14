@@ -1,4 +1,3 @@
-require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const config = require('../../config');
 exports.seed = function (knex) {
