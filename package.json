@@ -30,8 +30,10 @@
     "androidBuild": "cd client && npm run build && npx cap sync android && npx cap open android",
     "androidUpdate": "cd client && npx cap sync android && npx cap open android",
     "server": "nodemon index.js",
-    "updateDB": "npx knex migrate:latest --env development",
-    "updateDBTest": "npx knex migrate:latest --env testing"
+    "resetDB": "npx knex migrate:rollback",
+    "seedDB": "npx knex seed:run",
+    "updateDB": "npm run resetDB --env development && npx knex migrate:latest --env development && npm run seedDB --env development",
+    "updateDBTest": "npm run resetDB --env testing && npx knex migrate:latest --env testing"
   },
   "repository": {
     "type": "git",
