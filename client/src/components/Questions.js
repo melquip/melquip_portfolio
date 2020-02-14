@@ -60,7 +60,7 @@ const Faq = styled.div`
 
 const Questions = (props) => {
   const { questions, toggleFAQ, getQuestions } = props;
-  const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), []);
+  const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), [toggleFAQ]);
   useEffect(() => {
     if (!questions.length) {
       getQuestions();

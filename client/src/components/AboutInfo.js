@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 import Loading from './Loading';

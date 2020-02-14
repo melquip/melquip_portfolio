@@ -44,12 +44,18 @@ const Footer = (props) => {
     <StyledFooter>
       <div className="inner flex">
         <div className="col col-2">
-          <a href="mailto:hire@melquip.com" target="_blank"><span>hire@melquip.com</span></a>
+          <a href="mailto:hire@melquip.com" target="_blank" rel="noopener noreferrer"><span>hire@melquip.com</span></a>
         </div>
         <div className="col col-2">
-          <a href="https://twitter.com/melquip7" target="_blank"><i className="icon-twitter"></i></a>
-          <a href="https://github.com/melquip" target="_blank"><i className="icon-github"></i></a>
-          <a href="https://www.linkedin.com/in/melquip/" target="_blank"><i className="icon-linkedin"></i></a>
+          <a href="https://twitter.com/melquip7" target="_blank" rel="noopener noreferrer">
+            <i className="icon-twitter"></i>
+          </a>
+          <a href="https://github.com/melquip" target="_blank" rel="noopener noreferrer">
+            <i className="icon-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/melquip/" target="_blank" rel="noopener noreferrer">
+            <i className="icon-linkedin"></i>
+          </a>
         </div>
       </div>
     </StyledFooter>
