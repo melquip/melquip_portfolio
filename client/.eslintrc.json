@@ -22,6 +22,8 @@
         "react"
     ],
     "rules": {
+      "arrow-parens": 0,
+      "react/jsx-filename-extension": "allow",
       "react-hooks/exhaustive-deps": "warn"
     }
 }

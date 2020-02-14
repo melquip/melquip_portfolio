@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import SVGTitle from './SVGTitle';
 import Loading from './Loading';
-import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 
 const Faq = styled.div`

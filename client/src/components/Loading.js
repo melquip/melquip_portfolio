@@ -3,7 +3,7 @@ import SVGTitle from './SVGTitle';
 
 const Loading = () => {
   return (
-    <section>
+    <section class="loading">
       <div className="inner">
         <SVGTitle>Loading...</SVGTitle>
       </div>

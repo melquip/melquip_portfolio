@@ -19,7 +19,7 @@ const StyledTitle = styled.h1`
   }
 `;
 
-export const SVGTitle = (props) => {
+const SVGTitle = (props) => {
   return (
     <StyledTitle>
       <svg id="pageTitle" viewBox="0 0 1024 88" preserveAspectRatio="xMidYMid meet">
