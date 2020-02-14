@@ -64,8 +64,8 @@ const WorkDetails = (props) => {
       getProjects();
     }
   }, []);
-  const id = match ? Number(match.params.id) : null;
-  const singleProject = project ? project : projects.find(proj => proj.id === Number(id));
+  const url = match ? match.params.url : null;
+  const singleProject = project ? project : projects.find(proj => proj.url === url);
 
   if (!singleProject) {
     return <Loading />;
@@ -73,7 +73,7 @@ const WorkDetails = (props) => {
 
   return (
     type === 'list' ? (
-      <Project key={singleProject.id} to={'/work/' + singleProject.id} className="col col-2">
+      <Project key={singleProject.id} to={'/work/' + singleProject.url} className="col col-2">
         <h3>{singleProject.title}</h3>
         <p>{singleProject.summary}</p>
         <div className="button"><i className="icon-eye"></i> View</div>

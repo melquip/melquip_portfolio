@@ -26,7 +26,7 @@ const App = (props) => {
         }
       }} />
       <Route exact path="/work" component={Work} />
-      <Route path="/work/:id" component={WorkDetails} />
+      <Route path="/work/:url" component={WorkDetails} />
       <Route path="/faq" component={Questions} />
       <Footer />
     </div>
