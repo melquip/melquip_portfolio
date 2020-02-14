@@ -4,6 +4,7 @@ module.exports = {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT,
   origin: [
+    '[melquip.netlify.com]',
     'http://www.melquip.com',
     'https://www.melquip.com',
     'http://localhost',
