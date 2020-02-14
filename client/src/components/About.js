@@ -165,7 +165,7 @@ const About = (props) => {
             : null
         }
       </StyledAbout>
-      <AboutInfo />
+      {/* <AboutInfo /> */}
     </>
   )
 }
