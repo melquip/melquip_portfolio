@@ -91,22 +91,6 @@ const settingsTilt = {
   easing: "cubic-bezier(.03,.98,.52,.99)",    // Easing on enter/exit.
 }
 
-function throttle(fn, wait) {
-  var time = Date.now();
-  return function (e) {
-    if ((time + wait - Date.now()) < 0) {
-      fn(e);
-      time = Date.now();
-    }
-  }
-}
-
-let lastScrollTop = 0;
-let scrolling = false;
-let st = 0;
-const sections = ['about', 'aboutInfo'];
-let section = 0;
-
 const About = (props) => {
   const { about, getAbout } = props;
   const [currSlide, setCurrSlide] = useState(0);
@@ -115,31 +99,6 @@ const About = (props) => {
   let updateTimer;
 
   useEffect(() => {
-    document.addEventListener('scroll', throttle(function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      st = window.pageYOffset || document.documentElement.scrollTop;
-      if (!scrolling) {
-        scrolling = true;
-        if (st > lastScrollTop) {
-          section = section + 1 >= sections.length ? section : section + 1;
-        } else {
-          section = section - 1 < 0 ? section : section - 1;
-        }
-        window.scroll({
-          top: document.getElementById(sections[section]).offsetTop - 100,
-          left: 0,
-          behavior: 'smooth'
-        });
-        setTimeout(() => {
-          scrolling = false;
-          lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          console.log('after scrolling', scrolling, 'st', st, 'last', lastScrollTop, st > lastScrollTop)
-        }, 700);
-      }
-      return false;
-    }, 701));
-
     if (!about.length) {
       getAbout();
     }
