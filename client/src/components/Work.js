@@ -48,7 +48,8 @@ const Work = (props) => {
   const [searchResults, setSearchResults] = useState([]);
   const debouncedSearch = useDebounce(search.toLowerCase(), 700);
   useEffect(() => {
-    getProjects();
+    if (!projects.length) getProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

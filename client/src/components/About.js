@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
@@ -96,17 +96,16 @@ const About = (props) => {
   const [currSlide, setCurrSlide] = useState(0);
   const [pause, setPause] = useState(false);
 
-  let updateTimer;
+  let updateTimer = useRef(setTimeout(() => false, 1));
 
   useEffect(() => {
-    if (!about.length) {
-      getAbout();
-    }
+    if (!about.length) getAbout();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (about.length && !pause) {
-      updateTimer = setTimeout(() => {
+      updateTimer.current = setTimeout(() => {
         setCurrSlide(currSlide => {
           if (currSlide + 1 > about.length - 1) {
             return 0
@@ -115,7 +114,7 @@ const About = (props) => {
         });
       }, 7000);
     }
-    return () => clearTimeout(updateTimer)
+    return () => clearTimeout(updateTimer.current)
   }, [about, currSlide, pause])
 
   if (!about.length) {
@@ -126,7 +125,7 @@ const About = (props) => {
     e.preventDefault();
     const target = e.target;
     const currentSlide = parseInt(target.classList[1].split('-')[1]);
-    clearTimeout(updateTimer);
+    clearTimeout(updateTimer.current);
     if (Array.from(target.classList).includes('active')) {
       console.log(!pause)
       setPause(pause => !pause);

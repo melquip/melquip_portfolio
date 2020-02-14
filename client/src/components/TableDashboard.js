@@ -15,17 +15,17 @@ import Loading from './Loading';
 const server = process.env.REACT_APP_API;
 
 const TableDashboard = (props) => {
+  const { table, initialState, fieldTypes } = props;
+  const [form, setForm] = useState(initialState);
+  const [tableData, setTableData] = useState([]);
+  const allFields = Object.keys(initialState);
+
   let user = JSON.parse(localStorage.getItem('melquip_user'));
   let options = {
     headers: {
       authorization: user && user.token ? user.token : null,
     }
   }
-
-  const { table, initialState, fieldTypes } = props;
-  const [form, setForm] = useState(initialState);
-  const [tableData, setTableData] = useState([]);
-  const allFields = Object.keys(initialState);
 
   useEffect(() => {
     if (!tableData.length) {
@@ -34,10 +34,12 @@ const TableDashboard = (props) => {
       }).catch(err => console.error(err));
     }
     if (!Object.keys(user).length) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       user = JSON.parse(localStorage.getItem('melquip_user'));
     } else {
       options.headers.authorization = user.token;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const onInputChange = (e) => {

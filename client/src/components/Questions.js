@@ -62,9 +62,8 @@ const Questions = (props) => {
   const { questions, toggleFAQ, getQuestions } = props;
   const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), [toggleFAQ]);
   useEffect(() => {
-    if (!questions.length) {
-      getQuestions();
-    }
+    if (!questions.length) getQuestions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   if (!questions.length) {
     return <Loading />;

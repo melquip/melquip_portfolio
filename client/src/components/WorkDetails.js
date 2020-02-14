@@ -67,9 +67,8 @@ const StyledDetails = styled.section`
 const WorkDetails = (props) => {
   const { project, type, projects, match, getProjects } = props;
   useEffect(() => {
-    if (!projects.length) {
-      getProjects();
-    }
+    if (!projects.length) getProjects();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const url = match ? match.params.url : null;
   const singleProject = project ? project : projects.find(proj => proj.url === url);
