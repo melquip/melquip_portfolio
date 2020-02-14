@@ -6,7 +6,7 @@ const {
   requireLogin,
   validateId,
   validateQuestionReq,
-  validateQuestionPost
+  validateQuestionPost,
 } = require('../middleware');
 
 questionsRouter.get('/', async (req, res, next) => {
@@ -22,7 +22,7 @@ questionsRouter.get('/', async (req, res, next) => {
   }
 });
 
-questionsRouter.get('/:id', validateId, validateQuestionReq, (req, res, next) => {
+questionsRouter.get('/:id', validateId, validateQuestionReq, (req, res) => {
   res.status(200).json(req.question);
 });
 
@@ -60,7 +60,7 @@ questionsRouter.delete('/:id', requireLogin, validateId, async (req, res, next) 
     const { id } = req.params;
     const deleted = await Questions.deleteOne(id);
     if (deleted) {
-      res.status(200).json({ message: "Successfully deleted question " + id + "!" });
+      res.status(200).json({ message: `Successfully deleted question ${id}!` });
     } else {
       next(config.errors.couldntDeleteQuestion);
     }

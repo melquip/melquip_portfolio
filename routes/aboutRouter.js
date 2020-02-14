@@ -6,7 +6,7 @@ const {
   requireLogin,
   validateId,
   validateAboutReq,
-  validateAboutPost
+  validateAboutPost,
 } = require('../middleware');
 
 aboutRouter.get('/', async (req, res, next) => {
@@ -22,7 +22,7 @@ aboutRouter.get('/', async (req, res, next) => {
   }
 });
 
-aboutRouter.get('/:id', validateId, validateAboutReq, async (req, res, next) => {
+aboutRouter.get('/:id', validateId, validateAboutReq, async (req, res) => {
   res.status(200).json(req.aboutLine);
 });
 
@@ -60,7 +60,7 @@ aboutRouter.delete('/:id', requireLogin, validateId, async (req, res, next) => {
     const { id } = req.params;
     const deleted = await About.deleteOne(id);
     if (deleted) {
-      res.status(200).json({ message: "Successfully deleted about line " + id + "!" });
+      res.status(200).json({ message: `Successfully deleted about line ${id}!` });
     } else {
       next(config.errors.couldntDeleteAboutLine);
     }
