@@ -4,8 +4,10 @@ exports.up = function(knex) {
     projects.string('title', 100).notNullable().unique();
     projects.string('summary').notNullable();
     projects.text('description').notNullable();
+    projects.string('url').notNullable().unique();
     projects.string('urlLive').notNullable();
-    projects.string('urlRepo').notNullable();
+    projects.string('urlRepo');
+    projects.string('tech').notNullable();
     projects.integer('priority').notNullable();
   });
 };
