@@ -74,7 +74,7 @@ This app attempts to combine Tinder’s intuitive workflow and apply it to a Lin
       url: createProjectUrl('Flama'),
       urlLive: 'https://flama.pt/',
       urlRepo: null,
-      tech: 'HTML5|Stylus|jQuery|PHP|MySQL',
+      tech: 'HTML|Stylus|jQuery|PHP|MySQL',
       priority: 0,
     },
     {
@@ -84,7 +84,7 @@ This app attempts to combine Tinder’s intuitive workflow and apply it to a Lin
       url: createProjectUrl('Miranda Bike Parts'),
       urlLive: 'https://mirandabikeparts.com/',
       urlRepo: null,
-      tech: 'HTML5|Stylus|jQuery|PHP|MySQL|SVG Animation',
+      tech: 'HTML|Stylus|jQuery|PHP|MySQL|SVG Animation',
       priority: 0,
     },
   ]));
