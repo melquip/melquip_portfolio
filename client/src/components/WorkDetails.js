@@ -65,7 +65,7 @@ const StyledDetails = styled.section`
 `;
 
 const WorkDetails = (props) => {
-  const { project, type, projects, match, getProjects } = props;
+  const { project, type, projects, match, getProjects, setStackSearch } = props;
   useEffect(() => {
     if (!projects.length) getProjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -84,7 +84,7 @@ const WorkDetails = (props) => {
         <p>{singleProject.summary}</p>
         {
           singleProject.tech.length ? 
-            singleProject.tech.map(t => <div key={t} className="button tech">{t}</div>)
+            singleProject.tech.map(t => <div key={t} className="button tech" onClick={setStackSearch}>{t}</div>)
           : null
         }
         {/* <div className="button"><i className="icon-eye"></i> View</div> */}
