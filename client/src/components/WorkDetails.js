@@ -34,10 +34,14 @@ const Project = styled(Link)`
     }
   }
   .button.tech {
+    cursor: pointer;
     margin-right: 1rem;
     &:hover {
       background-color: ${props => props.theme.colors.red};
       color: ${props => props.theme.colors.white};
+    }
+    &:last-child {
+      margin-right: 0;
     }
   }
 `;
@@ -61,6 +65,30 @@ const StyledDetails = styled.section`
       color: ${props => props.theme.colors.white};
       background-color: ${props => props.theme.colors.red};
     }
+    &.tech {
+      pointer-events: none;
+    }
+  }
+
+  .video {
+    position: relative;
+    margin-top: 2rem;
+    padding-bottom: 56.25%;
+    padding-top: 0;
+    height: 0;
+    border: 2px solid ${props => props.theme.colors.lightgray};
+    transition: border-color .33s ease-in-out;
+    &:hover, &.active {
+      border-color: ${props => props.theme.colors.red};
+    }
+  }
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    width: 100%;
   }
 `;
 
@@ -73,6 +101,10 @@ const WorkDetails = (props) => {
   const url = match ? match.params.url : null;
   const singleProject = project ? project : projects.find(proj => proj.url === url);
 
+  const videoMouseEnter = e => {
+    document.getElementsByClassName('video').item(0).classList.add('active')
+  }
+
   if (!singleProject) {
     return <Loading />;
   }
@@ -83,9 +115,9 @@ const WorkDetails = (props) => {
         <h3>{singleProject.title}</h3>
         <p>{singleProject.summary}</p>
         {
-          singleProject.tech.length ? 
+          singleProject.tech.length ?
             singleProject.tech.map(t => <div key={t} className="button tech" onClick={setStackSearch}>{t}</div>)
-          : null
+            : null
         }
         {/* <div className="button"><i className="icon-eye"></i> View</div> */}
       </Project>
@@ -95,8 +127,19 @@ const WorkDetails = (props) => {
             <SVGTitle>{singleProject.title}</SVGTitle>
             <h6>{singleProject.summary}</h6>
             {singleProject.description && singleProject.description.length ? singleProject.description.map((p, i) => <p key={i}>{p}</p>) : null}
+            {
+              singleProject.tech.length ?
+                singleProject.tech.map(t => <div key={t} className="button tech">{t}</div>)
+                : null
+            }
+            {singleProject.tech.length ? (<br />) : null}
             <a href={singleProject.urlRepo} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-code"></i> View code</a>
             <a href={singleProject.urlLive} className="button" target="_blank" rel="noopener noreferrer"><i className="icon-live"></i> View live</a>
+            {
+              singleProject.video ? <div className="video" onMouseEnter={videoMouseEnter}>
+                <iframe title={singleProject.title} src={singleProject.video} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+              </div> : null
+            }
           </div>
         </StyledDetails>
       )
