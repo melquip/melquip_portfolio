@@ -12,6 +12,7 @@ The best alternative solution to this problem, a personal trainer, is expensive 
       url: createProjectUrl('Trackdrills'),
       urlLive: 'https://app.trackdrills.com/',
       urlRepo: 'https://github.com/LABS-EU3?utf8=%E2%9C%93&q=wt_&type=&language=',
+      video: 'https://www.youtube.com/embed/Nn2XUnbr_10',
       tech: 'Apollo|GraphQL|NodeJS|Express|MongoDB|React',
       priority: 0,
     },
