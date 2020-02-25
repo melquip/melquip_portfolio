@@ -32,10 +32,19 @@ const Project = styled(Link)`
       background-color: ${props => props.theme.colors.red};
       color: ${props => props.theme.colors.white};
     }
+    /*
+    .techStack {
+      max-height: 9999px;
+      transition: max-height .8s cubic-bezier(.5, 0, 1, 0) -.1s;
+    }
+    */
   }
   .button.tech {
     cursor: pointer;
-    margin-right: 1rem;
+    margin-top: .7rem;
+    margin-right: .8rem;
+    font-size: .9rem;
+    padding: .5rem .8rem;
     &:hover {
       background-color: ${props => props.theme.colors.red};
       color: ${props => props.theme.colors.white};
@@ -44,6 +53,13 @@ const Project = styled(Link)`
       margin-right: 0;
     }
   }
+  /*
+  .techStack {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .8s cubic-bezier(0, 1, 0, 1) -.1s;
+  }
+  */
 `;
 
 const StyledDetails = styled.section`
@@ -116,7 +132,11 @@ const WorkDetails = (props) => {
         <p>{singleProject.summary}</p>
         {
           singleProject.tech.length ?
-            singleProject.tech.map(t => <div key={t} className="button tech" onClick={setStackSearch}>{t}</div>)
+            <div className="techStack">
+              {
+                singleProject.tech.map(t => <div key={t} className="button tech" onClick={setStackSearch}>{t}</div>)
+              }
+            </div>
             : null
         }
         {/* <div className="button"><i className="icon-eye"></i> View</div> */}
