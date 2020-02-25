@@ -8,14 +8,16 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100px;
-  padding: 25px 0;
-  background: ${props => props.theme.colors.white};
   z-index: 1000;
-
+  background: rgba(255, 255, 255, 1);
+  transition: box-shadow .2s ease-in-out;
+  &.scroll {
+    box-shadow: 0px 0px 5px rgba(0,0,0,.25);
+  }
   .logo {
     width: 100%;
     max-height: 50px;
+    margin-top: 25px;
     &.col.col-2 {
       max-width: 60px;
       flex-basis: 60px;
@@ -43,16 +45,23 @@ const StyledHeader = styled.header`
     a {
       font-size: 1.2rem;
       line-height: 1.5rem;
-      padding: .81rem 1rem;
+      padding: calc(.81rem + 26px) 1rem calc(.80rem + 24px);
       text-transform: uppercase;
       font-family: ${props => props.theme.fonts.secondary};
+      background: rgba(0,0,0,0);
+      transition: all .33s ease-in-out;
       &:last-child {
         margin-right: -1rem;
+      }
+      &:hover {
+        background: ${props => props.theme.colors.midblue};
+        color: ${props => props.theme.colors.white}
       }
       @media ${props => props.theme.mediaMobile} {
         font-size: 1.5rem;
         line-height: 1.5rem;
-        padding: .81rem 1.56rem;
+        padding-left: 1.56rem;
+        padding-right: 1.56rem;
         &:last-child {
           margin-right: -1.56rem;
         }
