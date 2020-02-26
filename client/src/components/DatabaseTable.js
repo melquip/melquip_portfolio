@@ -12,7 +12,7 @@ import { Edit, Delete } from '@material-ui/icons';
 
 const DatabaseTable = (props) => {
   const { table, fields, onEdit, onDelete } = props;
-
+  console.log(table, fields)
   return (
     <>
       <Paper className="dashboardPaper">
@@ -26,7 +26,9 @@ const DatabaseTable = (props) => {
           <TableBody>
             {table.map(row => (
               <TableRow key={row.id}>
-                {fields.map(field => <TableCell key={table + '_' + field + '_row'}>{row[field].toString().substring(0, 100)}</TableCell>)}
+                {fields.map(field => <TableCell key={table + '_' + field + '_row'}>{
+                  row[field] ? row[field].toString().substring(0, 100) : null
+                }</TableCell>)}
                 <TableCell>
                   <Fab color="secondary" aria-label="edit" onClick={onEdit(row.id)} size="small">
                     <Edit />
