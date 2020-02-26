@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import Header from './Header';
@@ -12,6 +12,17 @@ import Dashboard from './Dashboard';
 
 
 const App = (props) => {
+  useEffect(() => {
+    const header = document.getElementsByTagName('header').item(0);
+    document.addEventListener('scroll', (e) => {
+      if (window.scrollY === 0) {
+        header.classList.remove('scroll');
+      }
+      if (window.scrollY > 10) {
+        header.classList.add('scroll');
+      }
+    }, { passive: true })
+  }, [])
   return (
     <div className="App">
       <Header />

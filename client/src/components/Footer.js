@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
-  position: fixed;
-  bottom: 0;
-  left: 0;
   height: 75px;
   width: 100%;
   z-index: 1000;

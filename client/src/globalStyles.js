@@ -34,7 +34,6 @@ body {
 	line-height: 1;
   font-family: ${props => props.theme.fonts.primary};
   padding-top: 100px;
-  padding-bottom: 75px;
 }
 ol, ul {
 	list-style: none;

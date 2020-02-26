@@ -6,6 +6,8 @@ exports.up = (knex) => knex.schema.createTable('projects', (projects) => {
   projects.string('url').notNullable().unique();
   projects.string('urlLive').notNullable();
   projects.string('urlRepo');
+  projects.string('video');
+  projects.string('image');
   projects.string('tech').notNullable();
   projects.integer('priority').notNullable();
 });

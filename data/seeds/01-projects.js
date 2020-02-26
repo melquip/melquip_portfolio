@@ -12,6 +12,7 @@ The best alternative solution to this problem, a personal trainer, is expensive 
       url: createProjectUrl('Trackdrills'),
       urlLive: 'https://app.trackdrills.com/',
       urlRepo: 'https://github.com/LABS-EU3?utf8=%E2%9C%93&q=wt_&type=&language=',
+      video: 'https://www.youtube.com/embed/Nn2XUnbr_10',
       tech: 'Apollo|GraphQL|NodeJS|Express|MongoDB|React',
       priority: 0,
     },
@@ -74,7 +75,7 @@ This app attempts to combine Tinder’s intuitive workflow and apply it to a Lin
       url: createProjectUrl('Flama'),
       urlLive: 'https://flama.pt/',
       urlRepo: null,
-      tech: 'HTML5|Stylus|jQuery|PHP|MySQL',
+      tech: 'HTML|Stylus|jQuery|PHP|MySQL',
       priority: 0,
     },
     {
@@ -84,7 +85,7 @@ This app attempts to combine Tinder’s intuitive workflow and apply it to a Lin
       url: createProjectUrl('Miranda Bike Parts'),
       urlLive: 'https://mirandabikeparts.com/',
       urlRepo: null,
-      tech: 'HTML5|Stylus|jQuery|PHP|MySQL|SVG Animation',
+      tech: 'HTML|Stylus|jQuery|PHP|MySQL|SVG Animation',
       priority: 0,
     },
   ]));

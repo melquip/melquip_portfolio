@@ -72,8 +72,14 @@ const Work = (props) => {
     setSearch(searched);
   }
 
-  const focusSearch = (e) => {
+  const focusSearchOnMouseEnter = (e) => {
     document.querySelector('.search input').focus();
+  }
+  
+  const setStackSearch = (e) => {
+    e.preventDefault();
+    const search = e.target.innerText;
+    setSearch(search);
   }
 
   return (
@@ -84,12 +90,13 @@ const Work = (props) => {
           <input
             type="text"
             name="search"
-            onMouseEnter={focusSearch}
+            onMouseEnter={focusSearchOnMouseEnter}
             onChange={searchOnChange}
+            value={search}
           />
         </div>
         <ProjectFlex>
-          {searchResults.length ? searchResults.map(project => <WorkDetails key={project.id} type="list" project={project} />) : <p>
+          {searchResults.length ? searchResults.map(project => <WorkDetails key={project.id} type="list" project={project} setStackSearch={setStackSearch} />) : <p>
             No projects match your search query.
           </p>}
         </ProjectFlex>
