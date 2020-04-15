@@ -43,12 +43,12 @@ const ProjectFlex = styled.div`
 `;
 
 const Work = (props) => {
-  const { projects, getProjects } = props;
+  const { user, projects, getProjects } = props;
   const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const debouncedSearch = useDebounce(search.toLowerCase(), 700);
   useEffect(() => {
-    if (!projects.length) getProjects();
+    if (!projects.length || user.updatedAt < Date.now() - 300000) getProjects();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

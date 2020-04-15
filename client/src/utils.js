@@ -23,7 +23,8 @@ export const saveState = (state, keys) => {
 		let serializedState = null;
 		if (keys.length > 0) {
 			keys.forEach(key => {
-				serializedState = JSON.stringify(state[key]);
+        if (key == 'user') state[key]['updatedAt'] = Date.now()
+        serializedState = JSON.stringify(state[key]);
 				localStorage.setItem('melquip_' + key, serializedState);
 			});
 		} else {
