@@ -127,7 +127,7 @@ const WorkDetails = (props) => {
 
   return (
     type === 'list' ? (
-      <Project key={singleProject.id} to={'/work/' + singleProject.url} className="col col-2">
+      <Project key={singleProject.id} to={'/projects/' + singleProject.url} className="col col-2">
         <h3>{singleProject.title}</h3>
         <p>{singleProject.summary}</p>
         {
