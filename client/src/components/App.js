@@ -36,8 +36,8 @@ const App = (props) => {
           return <Redirect to="/admin" />;
         }
       }} />
-      <Route exact path="/work" component={Work} />
-      <Route path="/work/:url" component={WorkDetails} />
+      <Route exact path="/projects" component={Work} />
+      <Route path="/projects/:url" component={WorkDetails} />
       <Route path="/faq" component={Questions} />
       <Footer />
     </div>

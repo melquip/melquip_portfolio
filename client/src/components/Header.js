@@ -79,7 +79,7 @@ const Header = (props) => {
         </Link>
         <div className="col col-2 menu flex">
           <Link to="/">About</Link>
-          <Link to="/work">Portfolio</Link>
+          <Link to="/projects">Portfolio</Link>
           <Link to="/faq">FAQ</Link>
         </div>
       </div>

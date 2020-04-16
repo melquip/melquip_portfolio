@@ -59,10 +59,10 @@ const Faq = styled.div`
 `;
 
 const Questions = (props) => {
-  const { questions, toggleFAQ, getQuestions } = props;
+  const { user, questions, toggleFAQ, getQuestions } = props;
   const toggleQuestionOnClick = useCallback((id) => (e) => toggleFAQ(id), [toggleFAQ]);
   useEffect(() => {
-    if (!questions.length) getQuestions();
+    if (!questions.length || user.updatedAt < Date.now() - 300000) getQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   if (!questions.length) {

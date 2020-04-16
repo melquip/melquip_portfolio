@@ -92,14 +92,14 @@ const settingsTilt = {
 }
 
 const About = (props) => {
-  const { about, getAbout } = props;
+  const { user, about, getAbout } = props;
   const [currSlide, setCurrSlide] = useState(0);
   const [pause, setPause] = useState(false);
 
   let updateTimer = useRef(setTimeout(() => false, 1));
 
   useEffect(() => {
-    if (!about.length) getAbout();
+    if (!about.length || user.updatedAt < Date.now() - 300000) getAbout();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
