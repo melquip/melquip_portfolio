@@ -1,15 +1,16 @@
+
 exports.seed = (knex) => knex('about').truncate()
   .then(() => knex('about').insert([
     {
-      line: "Hi, I'm Melqui,|23 years old,|portuguese,|full-stack|web developer",
+      line: 'Hi, I\'m Melqui,|a team lead,|full-stack|developer|and teacher',
       priority: 10,
     },
     {
-      line: "I've worked|in web development|for 2 years|before starting|Lambda School",
+      line: 'Available|for new remote|and exciting|projects|to work on!',
       priority: 9,
     },
     {
-      line: "Now I'm looking|for remote|and exciting|new projects|to work on!",
+      line: '',
       priority: 8,
     },
   ]));
