@@ -4,7 +4,7 @@ import Tilt from 'react-tilt';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions';
 import Loading from './Loading';
-import AboutInfo from './AboutInfo';
+// import AboutInfo from './AboutInfo';
 
 const SliderNav = styled.div`
   text-align: center;
@@ -117,7 +117,7 @@ const About = (props) => {
           }
           return currSlide + 1
         });
-      }, currSlide + 1 == about.length ? 1500 : 7000);
+      }, currSlide + 1 === about.length ? 1500 : 7000);
     }
     return () => clearTimeout(updateTimer.current)
   }, [about, currSlide, pause])
