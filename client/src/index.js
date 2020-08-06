@@ -15,6 +15,9 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+// SW
+import * as serviceWorker from './serviceWorker';
+
 ReactDOM.render(
   <Provider store={store}>
     <Router>
@@ -26,3 +29,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+serviceWorker.register();
