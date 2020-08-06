@@ -47,10 +47,10 @@ const Slide = styled.div`
     font-size: 10vmin;
     line-height: 11vmin;
     will-change: transform, font-size;
-    transform: translateX(-100vw);
+    transform: translateX(100vw);
     font-family: ${props => props.theme.fonts.secondary};
     color: ${props => props.theme.colors.purple};
-    transition: transform .5s ease-in-out, font-size .33s ease-in-out;
+    transition: transform 0s ease-in-out, font-size .33s ease-in-out;
 
     @media ${props => props.theme.mediaDesktop} {
       font-size: 12vmin;
@@ -58,6 +58,7 @@ const Slide = styled.div`
     }
 
     &.show {
+      transition: transform .5s ease-in-out, font-size .33s ease-in-out;
       transform: translateX(0);
       &:hover {
         font-size: 9.5vmin;
@@ -65,6 +66,10 @@ const Slide = styled.div`
           font-size: 11.5vmin;
         }
       }
+    }
+    &.prev {
+      transition: transform .5s ease-in-out, font-size .33s ease-in-out;
+      transform: translateX(-100vw);
     }
     ${Array(20).join().split(',').map((el, i) => i > 1 ? `
     &:nth-child(${i}) {
@@ -112,7 +117,7 @@ const About = (props) => {
           }
           return currSlide + 1
         });
-      }, 7000);
+      }, currSlide + 1 == about.length ? 1500 : 7000);
     }
     return () => clearTimeout(updateTimer.current)
   }, [about, currSlide, pause])
@@ -144,7 +149,7 @@ const About = (props) => {
               <Slide className={i === currSlide ? 'active' : ''} key={slide.id || i}>
                 <Tilt options={settingsTilt}>
                   <div className="inner">
-                    {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : ''} key={j}>{text}</p>)}
+                    {slide.line.map((text, j) => <p className={i === currSlide ? 'show' : (i === currSlide-1 ? 'prev' : '')} key={j}>{text}</p>)}
                   </div>
                 </Tilt>
               </Slide>
@@ -152,7 +157,7 @@ const About = (props) => {
             : null
         }
         {
-          about.length ?
+          about.length && false ?
             <SliderNav>
               {about.map((slide, i) => (
                 <div
