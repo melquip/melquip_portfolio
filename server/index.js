@@ -32,15 +32,6 @@ server.use(cors({ origin: config.origin }));
 server.use(express.json());
 server.use(logger);
 
-server.get('/static/*', (req, res, next) => {
-  const date = new Date();
-  date.setFullYear(date.getFullYear() - 1);
-  res.setHeader('Expires', date.toUTCString());
-  res.setHeader('Pragma', 'max-age=86400');
-  res.setHeader('Cache-Control', 'public, max-age=86400');
-  next();
-});
-
 server.get('/', (req, res) => {
   res.status(200).json({ message: 'Server is running' });
 });
