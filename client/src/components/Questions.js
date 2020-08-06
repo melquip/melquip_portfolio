@@ -29,14 +29,14 @@ const Faq = styled.div`
       }
     }
     &:hover {
-      background-color: ${props => props.theme.colors.lightblue};
+      background-color: ${props => props.theme.colors.lightorange};
     }
   }
   .answer {
     overflow: hidden;
     max-height: 0;
     transition: max-height .33s cubic-bezier(0, 1, 0, 1) -.04125s, padding .5s ease-in-out;
-    background-color: ${props => props.theme.colors.lightblue};
+    background-color: ${props => props.theme.colors.lightorange};
     p {
       line-height: 1.3;
     }
@@ -44,7 +44,7 @@ const Faq = styled.div`
   &.open {
     .question {
       color: ${props => props.theme.colors.white};
-      background-color: ${props => props.theme.colors.midblue};
+      background-color: ${props => props.theme.colors.orange};
       button span {
         color: ${props => props.theme.colors.white};
         transform: rotate(45deg);
@@ -72,7 +72,7 @@ const Questions = (props) => {
     <section className="questions">
       <div className="inner">
         <SVGTitle>Frequently asked questions</SVGTitle>
-        {questions.length ? questions.map(question => (
+        {questions.length ? questions.map((question, i) => (
           <Faq key={question.id} onClick={toggleQuestionOnClick(question.id)} className={question.open ? "open" : ""}>
             <div className="question">
               <p>{question.question}</p>
