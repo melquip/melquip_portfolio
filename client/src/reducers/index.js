@@ -1,19 +1,6 @@
 import * as types from '../actions/types';
 
-const initialAboutState = [
-  {
-    line: "...|...|...|...|...".split('|'),
-    priority: 10,
-  },
-  {
-    line: "...|...|...|...|...".split('|'),
-    priority: 9,
-  },
-  {
-    line: "...|...|...|...|...".split('|'),
-    priority: 8,
-  }
-];
+const initialAboutState = [];
 
 export function aboutReducer(state = initialAboutState, action) {
   switch (action.type) {
