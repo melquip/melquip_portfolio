@@ -26,9 +26,19 @@ function logger(req, res, next) {
   next();
 }
 
+function setNoCache(req, res, next) {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() - 1);
+  res.setHeader('Expires', date.toUTCString());
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Cache-Control', 'public, no-cache');
+  next();
+}
+
 server.use(helmet());
 server.use(cors({ origin: config.origin }));
 server.use(express.json());
+server.use(setNoCache);
 server.use(logger);
 
 server.get('/', (req, res) => {

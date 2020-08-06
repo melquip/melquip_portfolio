@@ -2,18 +2,19 @@ import * as types from '../actions/types';
 
 const initialAboutState = [
   {
-    line: "Hi, I'm Melqui,|23 years old,|portuguese,|full-stack|web developer".split('|'),
+    line: "...|...|...|...|...".split('|'),
     priority: 10,
   },
   {
-    line: "I've worked|in web development|for 2 years|before starting|Lambda School".split('|'),
+    line: "...|...|...|...|...".split('|'),
     priority: 9,
   },
   {
-    line: "Now I'm looking|for remote|and exciting|new projects|to work on!".split('|'),
+    line: "...|...|...|...|...".split('|'),
     priority: 8,
   }
 ];
+
 export function aboutReducer(state = initialAboutState, action) {
   switch (action.type) {
     case types.SET_ABOUT:
@@ -44,7 +45,7 @@ const initialQuestionsState = [];
 export function questionsReducer(questions = initialQuestionsState, action) {
   switch (action.type) {
     case types.SET_QUESTIONS:
-      return action.payload.map(question => ({ ...question, open: false }));
+      return action.payload.map((question, i) => ({ ...question, open: i <= 2 }));
     case types.TOGGLE_FAQ:
       return questions.map(question => {
         if (question.id === action.payload) {
