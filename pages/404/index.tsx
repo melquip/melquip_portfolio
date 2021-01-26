@@ -14,14 +14,14 @@ import { IErrorPage } from "@Interfaces";
 // #endregion Interface Imports
 
 const Custom404: NextPage<IErrorPage.IProps> = ({ t }) => {
-    return (
-        <Container>
-            <TopText>{t("common:NotFound")}</TopText>
-            <Link href="/">
-                <ApodButton>{t("common:BackHome")}</ApodButton>
-            </Link>
-        </Container>
-    );
+  return (
+    <Container>
+      <TopText>{t("common:NotFound")}</TopText>
+      <Link href="/">
+        <ApodButton>{t("common:BackHome")}</ApodButton>
+      </Link>
+    </Container>
+  );
 };
 
 export default withTranslation("common")(Custom404);

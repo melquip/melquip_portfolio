@@ -8,17 +8,17 @@ import { Heading } from "@Components";
 // #endregion Local Imports
 
 describe("Components", () => {
-    describe("Heading", () => {
-        it("should render given text", () => {
-            const { getAllByText } = render(<Heading text="Render Me!" />);
+  describe("Heading", () => {
+    it("should render given text", () => {
+      const { getAllByText } = render(<Heading text="Render Me!" />);
 
-            expect(getAllByText("Render Me!").length).toEqual(2);
-        });
-
-        it("should match snapshot", () => {
-            const { container } = render(<Heading text="Test" />);
-
-            expect(container).toMatchSnapshot();
-        });
+      expect(getAllByText("Render Me!").length).toEqual(2);
     });
+
+    it("should match snapshot", () => {
+      const { container } = render(<Heading text="Test" />);
+
+      expect(container).toMatchSnapshot();
+    });
+  });
 });

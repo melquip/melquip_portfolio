@@ -7,5 +7,5 @@ import { HomeReducer } from "./home";
 // #endregion Local Imports
 
 export default combineReducers({
-    home: HomeReducer,
+  home: HomeReducer,
 });

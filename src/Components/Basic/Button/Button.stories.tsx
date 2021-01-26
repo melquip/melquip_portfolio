@@ -12,19 +12,19 @@ import { Button } from "./index";
 // #endregion Local Imports
 
 export default {
-    component: Button,
-    title: "Button",
+  component: Button,
+  title: "Button",
 };
 
 export const Default = () => (
-    <Apod>
-        <ApodButton>
-            <Button
-                disabled={boolean("Disabled", false)}
-                onClick={action("button-click")}
-            >
-                Hello Button
-            </Button>
-        </ApodButton>
-    </Apod>
+  <Apod>
+    <ApodButton>
+      <Button
+        disabled={boolean("Disabled", false)}
+        onClick={action("button-click")}
+      >
+        Hello Button
+      </Button>
+    </ApodButton>
+  </Apod>
 );

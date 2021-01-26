@@ -3,9 +3,9 @@ import "styled-components";
 // #endregion Global Imports
 
 declare module "styled-components" {
-    export interface DefaultTheme {
-        colors: {
-            primary: string;
-        };
-    }
+  export interface DefaultTheme {
+    colors: {
+      primary: string;
+    };
+  }
 }

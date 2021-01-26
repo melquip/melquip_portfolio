@@ -1,4 +1,4 @@
 export interface ApodPayload {
-    [key: string]: string;
-    hd?: boolean;
+  [key: string]: string;
+  hd?: boolean;
 }

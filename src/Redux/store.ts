@@ -10,9 +10,9 @@ import Reducers from "./Reducers";
 // #endregion Local Imports
 
 export const makeStore = (initialState: {}) => {
-    return createStore(
-        Reducers,
-        initialState,
-        composeWithDevTools(applyMiddleware(thunkMiddleware))
-    );
+  return createStore(
+    Reducers,
+    initialState,
+    composeWithDevTools(applyMiddleware(thunkMiddleware))
+  );
 };

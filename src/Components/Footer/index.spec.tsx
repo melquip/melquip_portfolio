@@ -8,9 +8,9 @@ import { Footer } from "@Components";
 // #endregion Local Imports
 
 describe("Footer", () => {
-    it("should match snapshot", () => {
-        const { container } = render(<Footer>Test</Footer>);
+  it("should match snapshot", () => {
+    const { container } = render(<Footer>Test</Footer>);
 
-        expect(container).toMatchSnapshot();
-    });
+    expect(container).toMatchSnapshot();
+  });
 });

@@ -17,28 +17,28 @@ const app = next({ dev });
 const handler = routes.getRequestHandler(app);
 
 app.prepare().then(() => {
-    const server = express();
+  const server = express();
 
-    app.setAssetPrefix(process.env.STATIC_PATH);
-    server.use(express.static(path.join(__dirname, "../public/static")));
-    server.use(nextI18NextMiddleware(nextI18next));
+  app.setAssetPrefix(process.env.STATIC_PATH);
+  server.use(express.static(path.join(__dirname, "../public/static")));
+  server.use(nextI18NextMiddleware(nextI18next));
 
-    if (process.env.PROXY_MODE === "local") {
-        // eslint-disable-next-line global-require
-        const proxyMiddleware = require("http-proxy-middleware");
-        Object.keys(devProxy).forEach(context => {
-            server.use(proxyMiddleware(context, devProxy[context]));
-        });
-    }
+  if (process.env.PROXY_MODE === "local") {
+    // eslint-disable-next-line global-require
+    const proxyMiddleware = require("http-proxy-middleware");
+    Object.keys(devProxy).forEach(context => {
+      server.use(proxyMiddleware(context, devProxy[context]));
+    });
+  }
 
-    server.all("*", (req, res) => handler(req, res));
+  server.all("*", (req, res) => handler(req, res));
 
-    server.listen(port);
+  server.listen(port);
 
-    // eslint-disable-next-line no-console
-    console.log(
-        `> Server listening at http://localhost:${port} as ${
-            dev ? "development" : process.env.NODE_ENV
-        }`
-    );
+  // eslint-disable-next-line no-console
+  console.log(
+    `> Server listening at http://localhost:${port} as ${
+      dev ? "development" : process.env.NODE_ENV
+    }`
+  );
 });

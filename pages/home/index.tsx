@@ -7,15 +7,15 @@ import { useSelector, useDispatch } from "react-redux";
 // #region Local Imports
 import { withTranslation } from "@Server/i18n";
 import {
-    Container,
-    Top,
-    TopText,
-    Middle,
-    MiddleLeft,
-    MiddleLeftButtons,
-    MiddleRight,
-    Apod,
-    ApodButton,
+  Container,
+  Top,
+  TopText,
+  Middle,
+  MiddleLeft,
+  MiddleLeftButtons,
+  MiddleRight,
+  Apod,
+  ApodButton,
 } from "@Styled/Home";
 import { IStore } from "@Redux/IStore";
 import { HomeActions } from "@Actions";
@@ -27,70 +27,70 @@ import { IHomePage, ReduxNextPageContext } from "@Interfaces";
 // #endregion Interface Imports
 
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
-    t,
-    i18n,
+  t,
+  i18n,
 }) => {
-    const home = useSelector((state: IStore) => state.home);
-    const dispatch = useDispatch();
+  const home = useSelector((state: IStore) => state.home);
+  const dispatch = useDispatch();
 
-    const renderLocaleButtons = (activeLanguage: string) =>
-        ["en", "es", "tr"].map(lang => (
-            <LocaleButton
-                key={lang}
-                lang={lang}
-                isActive={activeLanguage === lang}
-                onClick={() => i18n.changeLanguage(lang)}
+  const renderLocaleButtons = (activeLanguage: string) =>
+    ["en", "es", "tr"].map(lang => (
+      <LocaleButton
+        key={lang}
+        lang={lang}
+        isActive={activeLanguage === lang}
+        onClick={() => i18n.changeLanguage(lang)}
+      />
+    ));
+
+  return (
+    <Container>
+      <Top>
+        <img src="/images/pankod-logo.png" alt="Pankod Logo" />
+      </Top>
+      <Middle>
+        <MiddleLeft>
+          <MiddleLeftButtons>
+            {renderLocaleButtons(i18n.language)}
+          </MiddleLeftButtons>
+        </MiddleLeft>
+        <MiddleRight>
+          <TopText>{t("common:Hello")}</TopText>
+          <Heading text={t("common:World")} />
+          <Apod>
+            <ApodButton
+              onClick={() => {
+                dispatch(
+                  HomeActions.GetApod({
+                    params: { hd: false },
+                  })
+                );
+              }}
+            >
+              Discover Space
+            </ApodButton>
+            <img
+              src={home.image.url}
+              height="300"
+              width="150"
+              alt="Discover Space"
             />
-        ));
-
-    return (
-        <Container>
-            <Top>
-                <img src="/images/pankod-logo.png" alt="Pankod Logo" />
-            </Top>
-            <Middle>
-                <MiddleLeft>
-                    <MiddleLeftButtons>
-                        {renderLocaleButtons(i18n.language)}
-                    </MiddleLeftButtons>
-                </MiddleLeft>
-                <MiddleRight>
-                    <TopText>{t("common:Hello")}</TopText>
-                    <Heading text={t("common:World")} />
-                    <Apod>
-                        <ApodButton
-                            onClick={() => {
-                                dispatch(
-                                    HomeActions.GetApod({
-                                        params: { hd: false },
-                                    })
-                                );
-                            }}
-                        >
-                            Discover Space
-                        </ApodButton>
-                        <img
-                            src={home.image.url}
-                            height="300"
-                            width="150"
-                            alt="Discover Space"
-                        />
-                    </Apod>
-                </MiddleRight>
-            </Middle>
-        </Container>
-    );
+          </Apod>
+        </MiddleRight>
+      </Middle>
+    </Container>
+  );
 };
 
 Home.getInitialProps = async (
-    ctx: ReduxNextPageContext
+  ctx: ReduxNextPageContext
 ): Promise<IHomePage.InitialProps> => {
-    await ctx.store.dispatch(
-        HomeActions.GetApod({
-            params: { hd: true },
-        })
-    );
-    return { namespacesRequired: ["common"] };
+  await ctx.store.dispatch(
+    HomeActions.GetApod({
+      params: { hd: true },
+    })
+  );
+  return { namespacesRequired: ["common"] };
 };
 
 const Extended = withTranslation("common")(Home);

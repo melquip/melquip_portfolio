@@ -12,18 +12,18 @@ import { LocaleButton } from "./index";
 // #endregion Local Imports
 
 export default {
-    component: LocaleButton,
-    title: "LocaleButton",
+  component: LocaleButton,
+  title: "LocaleButton",
 };
 
 export const Default = () => (
-    <Apod>
-        <ApodButton>
-            <LocaleButton
-                lang={select("Language", ["tr", "en", "es"], "tr")}
-                isActive={boolean("Active", true)}
-                onClick={action("button-click")}
-            />
-        </ApodButton>
-    </Apod>
+  <Apod>
+    <ApodButton>
+      <LocaleButton
+        lang={select("Language", ["tr", "en", "es"], "tr")}
+        isActive={boolean("Active", true)}
+        onClick={action("button-click")}
+      />
+    </ApodButton>
+  </Apod>
 );

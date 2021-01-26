@@ -16,28 +16,28 @@ import "@Static/css/main.scss";
 // #endregion Local Imports
 
 class WebApp extends App<AppWithStore> {
-    static async getInitialProps({
-        Component,
-        ctx,
-    }: AppContext): Promise<AppInitialProps> {
-        const pageProps = Component.getInitialProps
-            ? await Component.getInitialProps(ctx)
-            : {};
+  static async getInitialProps({
+    Component,
+    ctx,
+  }: AppContext): Promise<AppInitialProps> {
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {};
 
-        return { pageProps };
-    }
+    return { pageProps };
+  }
 
-    render() {
-        const { Component, pageProps, store } = this.props;
+  render() {
+    const { Component, pageProps, store } = this.props;
 
-        return (
-            <Provider store={store}>
-                <ThemeProvider theme={theme}>
-                    <Component {...pageProps} />
-                </ThemeProvider>
-            </Provider>
-        );
-    }
+    return (
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </Provider>
+    );
+  }
 }
 
 export default withRedux(makeStore)(appWithTranslation(WebApp));

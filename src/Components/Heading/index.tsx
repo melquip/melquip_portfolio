@@ -11,16 +11,16 @@ import { IHeading } from "./Heading";
 // #endregion Interface Imports
 
 const Heading: React.FunctionComponent<IHeading.IProps> = (
-    props
+  props
 ): JSX.Element => {
-    const { text } = props;
+  const { text } = props;
 
-    return (
-        <div className={styles.title}>
-            <span className={styles.title__back}>{text}</span>
-            <span className={styles.title__front}>{text}</span>
-        </div>
-    );
+  return (
+    <div className={styles.title}>
+      <span className={styles.title__back}>{text}</span>
+      <span className={styles.title__front}>{text}</span>
+    </div>
+  );
 };
 
 export { Heading };
