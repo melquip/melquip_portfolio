@@ -1,13 +1,13 @@
-import { I18nextProvider } from "react-i18next";
 import i18n from "i18next";
 import Backend from "i18next-xhr-backend";
-import { initReactI18next } from "react-i18next";
+import { I18nextProvider, initReactI18next } from "react-i18next";
+import { translations } from "../../server/i18n";
 const path = require("path");
 
 i18n.use(initReactI18next)
   .use(Backend)
   .init({
-    fallbackLng: "en",
+    fallbackLng: translations[0],
     debug: true,
     ns: ["common"],
     interpolation: {

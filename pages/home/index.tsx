@@ -24,6 +24,7 @@ import { Heading, LocaleButton } from "@Components";
 
 // #region Interface Imports
 import { IHomePage, ReduxNextPageContext } from "@Interfaces";
+import { translations } from '../../server/i18n';
 // #endregion Interface Imports
 
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
@@ -34,7 +35,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
   const dispatch = useDispatch();
 
   const renderLocaleButtons = (activeLanguage: string) =>
-    ["en", "pt"].map(lang => (
+    translations.map(lang => (
       <LocaleButton
         key={lang}
         lang={lang}
@@ -67,14 +68,14 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
                 );
               }}
             >
-              Discover Space
+              {t("common:DiscoverSpace")}
             </ApodButton>
-            <img
-              src={home.image.url}
-              height="300"
-              width="150"
-              alt="Discover Space"
-            />
+            {
+              !home.image.url ? null : <img
+                src={home.image.url}
+                alt={t("common:DiscoverSpace")}
+              />
+            }
           </Apod>
         </MiddleRight>
       </Middle>

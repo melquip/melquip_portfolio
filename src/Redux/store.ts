@@ -18,5 +18,4 @@ export const makeStore = (initialState: {}) => {
   );
 };
 
-// export an assembled wrapper
-export const wrapper = createWrapper(makeStore, {debug: true});
+export const wrapper = createWrapper(makeStore, { debug: true });
