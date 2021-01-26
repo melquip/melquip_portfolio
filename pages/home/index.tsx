@@ -34,7 +34,7 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
   const dispatch = useDispatch();
 
   const renderLocaleButtons = (activeLanguage: string) =>
-    ["en", "es", "tr"].map(lang => (
+    ["en", "pt"].map(lang => (
       <LocaleButton
         key={lang}
         lang={lang}
