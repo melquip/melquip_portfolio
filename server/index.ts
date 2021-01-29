@@ -27,7 +27,7 @@ app.prepare().then(() => {
     // eslint-disable-next-line global-require
     const { createProxyMiddleware } = require("http-proxy-middleware");
     Object.keys(devProxy).forEach(context => {
-      server.use(createProxyMiddleware (context, devProxy[context]));
+      server.use(createProxyMiddleware(context, devProxy[context]));
     });
   }
 

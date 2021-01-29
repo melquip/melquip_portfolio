@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 // #endregion Global Imports
 
 // #region Local Imports
-import { withTranslation } from "@Server/i18n";
+import { withTranslation, translations } from "@Server/i18n";
 import {
   Container,
   Top,
@@ -24,7 +24,6 @@ import { Heading, LocaleButton } from "@Components";
 
 // #region Interface Imports
 import { IHomePage, ReduxNextPageContext } from "@Interfaces";
-import { translations } from '../../server/i18n';
 // #endregion Interface Imports
 
 const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
@@ -70,12 +69,9 @@ const Home: NextPage<IHomePage.IProps, IHomePage.InitialProps> = ({
             >
               {t("common:DiscoverSpace")}
             </ApodButton>
-            {
-              !home.image.url ? null : <img
-                src={home.image.url}
-                alt={t("common:DiscoverSpace")}
-              />
-            }
+            {!home.image.url ? null : (
+              <img src={home.image.url} alt={t("common:DiscoverSpace")} />
+            )}
           </Apod>
         </MiddleRight>
       </Middle>

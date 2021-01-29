@@ -1,4 +1,7 @@
 {
+  "parserOptions": {
+    "project": ["./tsconfig.json", "./tsconfig.server.json"]
+  },
   "extends": [
     "react-app",
     "airbnb-typescript",
@@ -6,6 +9,7 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
+    "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
     "react/jsx-indent": [
       2,
