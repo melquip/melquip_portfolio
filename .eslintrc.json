@@ -38,7 +38,6 @@
     }
   },
   "plugins": [
-    "import",
-    "jest-dom"
+    "import"
   ]
 }

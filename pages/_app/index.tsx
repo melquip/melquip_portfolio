@@ -13,7 +13,7 @@ import { wrapper } from "@Redux";
 import "@Static/css/main.scss";
 // #endregion Local Imports
 
-class WebApp extends App<AppWithStore> {
+class Melquip extends App<AppWithStore> {
   static async getInitialProps({
     Component,
     ctx,
@@ -38,4 +38,4 @@ class WebApp extends App<AppWithStore> {
   }
 }
 
-export default wrapper.withRedux(appWithTranslation(WebApp));
+export default wrapper.withRedux(appWithTranslation(Melquip));
