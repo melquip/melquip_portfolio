@@ -42,7 +42,13 @@ module.exports = {
 
   production: {
     client: 'pg',
-    connection: config.productionDB,
+    connection: {
+      connectionString: config.productionDB,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
     migrations: {
       directory: './data/migrations',
     },
