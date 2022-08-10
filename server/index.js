@@ -26,7 +26,6 @@ function logger(req, res, next) {
   next();
 }
 
-
 server.use(helmet());
 server.use(cors({ origin: config.origin }));
 server.use(express.json());
