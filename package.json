@@ -38,7 +38,7 @@
     "server": "nodemon index.js",
     "resetDB": "npx knex migrate:rollback",
     "seedDB": "npx knex seed:run",
-    "build": "npm run updateDB",
+    "build": "NODE_ENV=production npm run updateDB",
     "updateDB": "npm run resetDB && npx knex migrate:latest && npm run seedDB",
     "updateDBDev": "npm run resetDB --env development && npx knex migrate:latest --env development && npm run seedDB --env development",
     "updateDBTest": "npm run resetDB --env testing && npx knex migrate:latest --env testing"
