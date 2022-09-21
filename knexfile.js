@@ -40,7 +40,7 @@ module.exports = {
     },
   },
 
-  production: {
+  cyclic: {
     client: 'sqlite3',
     connection: {
       filename: './data/melquip.db3',
@@ -59,7 +59,7 @@ module.exports = {
     },
   },
 
-  /* production: {
+  production: {
     client: 'pg',
     connection: {
       connectionString: config.productionDB,
@@ -74,5 +74,5 @@ module.exports = {
     seeds: {
       directory: './data/seeds',
     },
-  }, */
+  },
 };
