@@ -12,10 +12,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^2.3.0",
-    "pg": "^7.14.0",
-    "sqlite3": "^5.1.1",
-    "woke-dyno": "^0.0.4"
+    "pg": "^7.14.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -24,7 +21,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^2.0.1"
+    "knex": "^2.3.0",
+    "nodemon": "^2.0.1",
+    "sqlite3": "^5.1.1"
   },
   "engines": {
     "node": "12.13.0",
