@@ -3,7 +3,6 @@ require('dotenv').config();
 module.exports = {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT,
-  dynoUrl: process.env.DYNO_URL,
   origin: [
     '[melquip.netlify.com]',
     'http://www.melquip.com',

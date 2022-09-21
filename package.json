@@ -12,9 +12,9 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "knex": "^0.20.3",
+    "knex": "^2.3.0",
     "pg": "^7.14.0",
-    "sqlite3": "^4.1.0",
+    "sqlite3": "^5.1.1",
     "woke-dyno": "^0.0.4"
   },
   "devDependencies": {
