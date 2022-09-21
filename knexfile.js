@@ -41,35 +41,17 @@ module.exports = {
   },
 
   // Cyclic
-  production: {
-    client: 'sqlite3',
-    connection: {
-      filename: config.productionDB,
-    },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done);
-      },
-    },
-    useNullAsDefault: true,
-    migrations: {
-      directory: './data/migrations',
-    },
-    seeds: {
-      directory: './data/seeds',
-    },
-  },
-
-  // Heroku
   // production: {
-  //   client: 'pg',
+  //   client: 'sqlite3',
   //   connection: {
-  //     connectionString: config.productionDB,
-  //     ssl: {
-  //       require: true,
-  //       rejectUnauthorized: false,
+  //     filename: config.productionDB,
+  //   },
+  //   pool: {
+  //     afterCreate: (conn, done) => {
+  //       conn.run('PRAGMA foreign_keys = ON', done);
   //     },
   //   },
+  //   useNullAsDefault: true,
   //   migrations: {
   //     directory: './data/migrations',
   //   },
@@ -77,4 +59,22 @@ module.exports = {
   //     directory: './data/seeds',
   //   },
   // },
+
+  // Heroku
+  production: {
+    client: 'pg',
+    connection: {
+      connectionString: config.productionDB,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
 };
