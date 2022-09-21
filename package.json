@@ -26,11 +26,11 @@
     "nodemon": "^2.0.1"
   },
   "engines": {
-    "node": "12.13.0",
-    "npm": "6.12.1"
+    "node": "16.16.0",
+    "npm": "8.11.0"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "npm install && node index.js",
     "client": "cd client && npm start",
     "clientBuild": "cd client && npm start",
     "androidBuild": "cd client && npm run build && npx cap sync android && npx cap open android",
