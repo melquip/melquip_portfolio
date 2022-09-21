@@ -40,25 +40,7 @@ module.exports = {
     },
   },
 
-  cyclic: {
-    client: 'sqlite3',
-    connection: {
-      filename: './data/melquip.db3',
-    },
-    pool: {
-      afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done);
-      },
-    },
-    useNullAsDefault: true,
-    migrations: {
-      directory: './data/migrations',
-    },
-    seeds: {
-      directory: './data/seeds',
-    },
-  },
-
+  // Cyclic
   production: {
     client: 'sqlite3',
     connection: {
@@ -77,6 +59,8 @@ module.exports = {
       directory: './data/seeds',
     },
   },
+
+  // Heroku
   // production: {
   //   client: 'pg',
   //   connection: {
