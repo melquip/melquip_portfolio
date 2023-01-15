@@ -11,6 +11,7 @@ export const toggleFAQ = (id) => {
 }
 
 export const getQuestions = () => dispatch => {
+  return;
   axios.get(`${server}/api/questions`).then(({ data: questions }) => {
     dispatch({
       type: types.SET_QUESTIONS,
@@ -20,6 +21,7 @@ export const getQuestions = () => dispatch => {
 }
 
 export const getProjects = () => dispatch => {
+  return;
   axios.get(`${server}/api/projects`).then(({ data: projects }) => {
     dispatch({
       type: types.SET_PROJECTS,
@@ -29,6 +31,7 @@ export const getProjects = () => dispatch => {
 }
 
 export const getAbout = () => dispatch => {
+  return;
   axios.get(`${server}/api/about`).then(({ data: about }) => {
     dispatch({
       type: types.SET_ABOUT,
@@ -38,6 +41,7 @@ export const getAbout = () => dispatch => {
 }
 
 export const login = (form, history) => dispatch => {
+  return;
   axios.post(`${server}/login`, form).then(response => {
     dispatch({
       type: types.SET_USER,
